@@ -26,10 +26,10 @@ public class WW_BlueLightPuzzle : MonoBehaviour {
     
     void Update() {
         m_colourCheck = result.Result.material.color;
-        Debug.Log(m_colourCheck.b);
+        //Debug.Log(m_colourCheck.b);
 
-        Debug.Log("Diff = " + (m_colourCheck.r + m_colourCheck.g));
-        Debug.Log("Thresh = " + minOffColourThreshold);
+        //Debug.Log("Diff = " + (m_colourCheck.r + m_colourCheck.g));
+        //Debug.Log("Thresh = " + minOffColourThreshold);
 
         CheckForBlueAmount();
     }
