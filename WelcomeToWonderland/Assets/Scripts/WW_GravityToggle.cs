@@ -18,15 +18,15 @@ public class WW_GravityToggle : MonoBehaviour {
     private bool m_gravityOn = true;
     
 	void Start () {
-        //m_bodies = new List<Rigidbody>();
-        ToggleGravity();
-        ToggleGravity();
+        SetGravity(true);
     }
 
     void Update() {
         if(m_control.LeverEngaged) {
             ToggleGravity();
         }
+
+        // TODO: add any newly instantiated physics objects to the list.
     }
 
     /// <summary>
@@ -49,5 +49,31 @@ public class WW_GravityToggle : MonoBehaviour {
 
             }
         }
+    }
+
+    private void SetGravity(bool a_on) {
+        float force = Random.Range(m_minForce, m_maxForce);
+        for (int i = 0; i < m_bodies.Count; i++) {
+            if (!a_on) {
+                NVRInteractableItem iItem = m_bodies[i].gameObject.GetComponent<NVRInteractableItem>();
+                if (iItem != null) iItem.EnableGravityOnDetach = a_on;
+                m_bodies[i].useGravity = a_on;
+                m_bodies[i].AddForce(Vector3.up * force * Time.deltaTime, ForceMode.VelocityChange);
+            } else {
+                NVRInteractableItem iItem = m_bodies[i].gameObject.GetComponent<NVRInteractableItem>();
+                if (iItem != null) iItem.EnableGravityOnDetach = a_on;
+                m_bodies[i].useGravity = a_on;
+
+            }
+        }
+    }
+
+    /// <summary>
+    /// Adds a physics object to the list, as long as it isnt already in it.
+    /// </summary>
+    /// <param name="a_rb">The Rigidbody you wish to add</param>
+    public void AddPhysicsObject(Rigidbody a_rb) {
+        if (m_bodies.Contains(a_rb)) return;
+        m_bodies.Add(a_rb);
     }
 }
