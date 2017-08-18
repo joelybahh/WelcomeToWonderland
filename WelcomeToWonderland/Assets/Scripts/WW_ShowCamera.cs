@@ -9,7 +9,6 @@ public class WW_ShowCamera : MonoBehaviour {
     [SerializeField]
     WW_CAMERATYPE m_type;
     [SerializeField]
-
     GameObject m_player;
     Rigidbody m_rb;
     public Transform m_center;
@@ -19,7 +18,6 @@ public class WW_ShowCamera : MonoBehaviour {
     public float m_radiusSpeed = 0.1f;
     public float m_defaultRotationSpeed = 10.0f;
     public float m_currentRotationSpeed;
-
     void Start( ) {
 
         m_center = m_player.transform;
@@ -43,10 +41,9 @@ public class WW_ShowCamera : MonoBehaviour {
                 break;
 
             case WW_CAMERATYPE.DOGDE:
-
-                // Check direction of object entering trigger
-                // 
-
+                Vector3 direction = (other.transform.position - transform.position).normalized;
+              m_desiredPosition += (direction * 10.0f);
+                transform.position = Vector3.MoveTowards(transform.position, m_desiredPosition, Time.deltaTime * m_radiusSpeed);
                 break;
 
             case WW_CAMERATYPE.PHASABLE:
