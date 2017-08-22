@@ -9,9 +9,9 @@ using UnityEngine.Events;
 public class WW_SpinnerPuzzle : MonoBehaviour {
 
     [Header("Ring References")]
-    [SerializeField] private Transform m_outerRing;
-    [SerializeField] private Transform m_middleRing;
-    [SerializeField] private Transform m_centerRing;
+    [SerializeField] private NewtonVR.NVRLetterSpinner m_outerSpinner;
+    [SerializeField] private NewtonVR.NVRLetterSpinner m_middleSpinner;
+    [SerializeField] private NewtonVR.NVRLetterSpinner m_centerSpinner;
 
     [Header("Ring Rotation Settings")]
     [SerializeField] private float m_outerDesiredRot;
@@ -26,12 +26,22 @@ public class WW_SpinnerPuzzle : MonoBehaviour {
     [SerializeField] private UnityEvent m_OnPuzzleInitialized;
     [SerializeField] private UnityEvent m_OnPuzzleComplete;
 
+    [Header("Indicator Light References")]
+    [SerializeField] private Light m_redLight;
+    [SerializeField] private Light m_greenLight;
+    [SerializeField] private Light m_blueLight;
+
+    [Header("Button Reference")]
+    [SerializeField] private NewtonVR.NVRButton m_button;
+
     private float m_spinnerOuterRot;
     private float m_spinnerMiddleRot;
     private float m_spinnerCenterRot;
 
-    private bool m_poweredOn = false;
-    
+    private NewtonVR.NVRLetterSpinner spinner;
+    private bool m_poweredOn = true;
+    private bool m_hasInitialized = false;
+
     public bool PowerOn {
         get { return m_poweredOn; }
         set { m_poweredOn = value; }
@@ -39,28 +49,33 @@ public class WW_SpinnerPuzzle : MonoBehaviour {
 
     private void Update() {       
         if (!m_poweredOn) return; 
-        else InitializeRotations();
+        else if (!m_hasInitialized && m_poweredOn) InitializeRotations();
 
-        if (PuzzleComplete()) m_OnPuzzleComplete.Invoke();
+        if (m_poweredOn) {
+            m_redLight.enabled = true;
+            m_greenLight.enabled = true;
+            m_blueLight.enabled = true;
+        }
+
+        m_spinnerOuterRot = m_outerSpinner.CurrentAngle;
+        m_spinnerMiddleRot = m_middleSpinner.CurrentAngle;
+        m_spinnerCenterRot = m_centerSpinner.CurrentAngle;
+
+        if (m_button.ButtonDown) {
+            if (PuzzleComplete()) { m_OnPuzzleComplete.Invoke(); Debug.Log("Solved!!!!!!"); }
+        }
     }
 
     /// <summary>
     /// Sets up the rotations values, normalizes them, and sets the rotation.
     /// </summary>
     private void InitializeRotations() {
-        m_spinnerOuterRot = m_outerRing.transform.rotation.z;
-        m_spinnerMiddleRot = m_middleRing.transform.rotation.z;
-        m_spinnerCenterRot = m_centerRing.transform.rotation.z;
-
-        NormalizeRotation(ref m_spinnerOuterRot);
-        NormalizeRotation(ref m_spinnerMiddleRot);
-        NormalizeRotation(ref m_spinnerCenterRot);
-
-        m_outerRing.transform.rotation = new Quaternion(m_outerRing.transform.rotation.x, m_outerRing.transform.rotation.y, m_spinnerOuterRot, 1);
-        m_middleRing.transform.rotation = new Quaternion(m_middleRing.transform.rotation.x, m_middleRing.transform.rotation.y, m_spinnerMiddleRot, 1);
-        m_centerRing.transform.rotation = new Quaternion(m_centerRing.transform.rotation.x, m_centerRing.transform.rotation.y, m_spinnerCenterRot, 1);
+        m_spinnerOuterRot = m_outerSpinner.CurrentAngle;
+        m_spinnerMiddleRot = m_middleSpinner.CurrentAngle;
+        m_spinnerCenterRot = m_centerSpinner.CurrentAngle;
 
         m_OnPuzzleInitialized.Invoke();
+        m_hasInitialized = true;
     }
 
     /// <summary>
@@ -68,7 +83,9 @@ public class WW_SpinnerPuzzle : MonoBehaviour {
     /// </summary>
     /// <param name="a_inputRot">A reference to the input rotation</param>
     private void NormalizeRotation(ref float a_inputRot) {
-        a_inputRot = (a_inputRot % 360) + (a_inputRot < 0 ? 360: 0);
+        float holder = a_inputRot;
+        holder = (a_inputRot % 360) + (a_inputRot <= 0 ? 360: 0);
+        a_inputRot = holder;
     }
 
     /// <summary>
@@ -76,8 +93,14 @@ public class WW_SpinnerPuzzle : MonoBehaviour {
     /// </summary>
     /// <returns>A bool that states whether or not you have completed the puzzle</returns>
     private bool PuzzleComplete() {
-        return (m_spinnerOuterRot >= (m_outerDesiredRot - m_errorThresh) && m_spinnerOuterRot <= (m_outerDesiredRot + m_errorThresh)) &&
-           (m_spinnerMiddleRot >= (m_middleDesiredRot - m_errorThresh) && m_spinnerMiddleRot <= (m_middleDesiredRot + m_errorThresh)) &&
-           (m_spinnerCenterRot >= (m_centerDesiredRot - m_errorThresh) && m_spinnerCenterRot <= (m_centerDesiredRot + m_errorThresh)) ? true : false;
+        return (m_spinnerOuterRot  >= (m_outerDesiredRot -  m_errorThresh) && m_spinnerOuterRot  <= (m_outerDesiredRot  + m_errorThresh)) &&
+               (m_spinnerMiddleRot >= (m_middleDesiredRot - m_errorThresh) && m_spinnerMiddleRot <= (m_middleDesiredRot + m_errorThresh)) &&
+               (m_spinnerCenterRot >= (m_centerDesiredRot - m_errorThresh) && m_spinnerCenterRot <= (m_centerDesiredRot + m_errorThresh)) ? true : false;
+    }
+
+    public void SetVictoryColor() {
+        m_redLight.color = Color.green;
+        m_greenLight.color = Color.green;
+        m_blueLight.color = Color.green;
     }
 }
