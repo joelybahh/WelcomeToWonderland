@@ -16,6 +16,8 @@ public class WW_WaterRobot : MonoBehaviour {
         STOP_AT_END
     }
 
+    public WW_PowerOutletSwitch m_switch;
+
     #region Serialized Variables
 
     [Header("Movement Settings")]
@@ -54,6 +56,10 @@ public class WW_WaterRobot : MonoBehaviour {
     }
     
 	void Update () {
+        if (m_switch.m_switchState == true) {
+            m_agent.enabled = true;
+        } else m_agent.enabled = false;
+
         if ( m_isStoppedAtEnd ) return;
 		switch(m_pathingBehaviour) {
             case ePathingBehaviour.LOOPING:     UpdateLooping();    break;
