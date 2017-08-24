@@ -1,17 +1,15 @@
 fileFormatVersion: 2
-guid: df5c0cd0d195a314bbf1e243405f5281
-timeCreated: 1503533720
+guid: a3da289346d919e4dbe0360a61b9031f
+timeCreated: 1503535910
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: WW_wall_duct_geo
-    100002: //RootNode
-    400000: WW_wall_duct_geo
-    400002: //RootNode
-    2300000: WW_wall_duct_geo
-    3300000: WW_wall_duct_geo
-    4300000: WW_wall_duct_geo
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: pCube2
   materials:
     importMaterials: 1
     materialName: 0

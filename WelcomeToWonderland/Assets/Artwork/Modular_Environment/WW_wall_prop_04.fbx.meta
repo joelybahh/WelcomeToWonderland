@@ -1,45 +1,17 @@
 fileFormatVersion: 2
-guid: 4ad38eea011e0bc4d8b4c5320979f23c
-timeCreated: 1502861729
+guid: 88c325399e1f6f24bb12b7eb72edf8e9
+timeCreated: 1503536748
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: WW_power_outlet_geo
-    100002: WW_power_outlet_switch_1_geo
-    100004: WW_power_outlet_switch_2_geo
-    100006: //RootNode
-    100008: WW_wall_duct_geo
-    100010: WW_walllight_housing_geo
-    100012: WW_walllight_switch_geo
-    400000: WW_power_outlet_geo
-    400002: WW_power_outlet_switch_1_geo
-    400004: WW_power_outlet_switch_2_geo
-    400006: //RootNode
-    400008: WW_wall_duct_geo
-    400010: WW_walllight_housing_geo
-    400012: WW_walllight_switch_geo
-    2300000: WW_power_outlet_geo
-    2300002: WW_power_outlet_switch_1_geo
-    2300004: WW_power_outlet_switch_2_geo
-    2300006: //RootNode
-    2300008: WW_wall_duct_geo
-    2300010: WW_walllight_housing_geo
-    2300012: WW_walllight_switch_geo
-    3300000: WW_power_outlet_geo
-    3300002: WW_power_outlet_switch_1_geo
-    3300004: WW_power_outlet_switch_2_geo
-    3300006: //RootNode
-    3300008: WW_wall_duct_geo
-    3300010: WW_walllight_housing_geo
-    3300012: WW_walllight_switch_geo
-    4300000: WW_wall_001_geo
-    4300002: WW_walllight_housing_geo
-    4300004: WW_walllight_switch_geo
-    4300006: WW_power_outlet_geo
-    4300008: WW_power_outlet_switch_1_geo
-    4300010: WW_power_outlet_switch_2_geo
-    4300012: WW_wall_duct_geo
+    100000: WW_wall_duct_geo
+    100002: //RootNode
+    400000: WW_wall_duct_geo
+    400002: //RootNode
+    2300000: WW_wall_duct_geo
+    3300000: WW_wall_duct_geo
+    4300000: WW_wall_duct_geo
   materials:
     importMaterials: 1
     materialName: 0
