@@ -12,8 +12,6 @@ public class WW_AIPathManager : MonoBehaviour {
     [Header("Pathfinding Waypoints")]
     [SerializeField] private List<Transform> m_waypoints;   
 
-    private Transform m_currentDestination = null;
-
     public Transform GetNearestWaypoint(Vector3 a_agentPos, out int a_pathIndex) {
         Transform nearestTarget = null;
         a_pathIndex = -1;

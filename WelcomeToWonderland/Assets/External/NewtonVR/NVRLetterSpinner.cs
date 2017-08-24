@@ -11,6 +11,8 @@ namespace NewtonVR
         private float SnapDistance = 1f;
         private float RungAngleInterval;
 
+        public float maxAngularVel = 4.0f;
+
         private Vector3 LastAngularVelocity = Vector3.zero;
 
         protected override void Awake()
@@ -23,7 +25,7 @@ namespace NewtonVR
         protected override void FixedUpdate()
         {
             base.FixedUpdate();
-
+        
             if (IsAttached == false)
             {
                 float wheelAngle = this.transform.localEulerAngles.z;
@@ -54,8 +56,8 @@ namespace NewtonVR
                     }
                 }
             }
-
-            LastAngularVelocity = this.Rigidbody.angularVelocity;
+            
+            LastAngularVelocity = this.Rigidbody.angularVelocity; 
         }
 
         public override void BeginInteraction(NVRHand hand)

@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -62,6 +61,8 @@ public class WW_WaterRobot : MonoBehaviour {
             case ePathingBehaviour.STOP_AT_END: UpdateStopAtEnd();  break;
         }
 	}
+
+    #region Private Methods
 
     /// <summary>
     /// Updates the logic for LOOPING behaviour
@@ -134,6 +135,20 @@ public class WW_WaterRobot : MonoBehaviour {
     }
 
     /// <summary>
+    /// re-enables the ai after a certain amount of time
+    /// </summary>
+    /// <param name="a_timer">time (in seconds) to wait</param>
+    /// <returns></returns>
+    private IEnumerator ReEnableTimer(float a_timer) {
+        yield return new WaitForSeconds(a_timer);
+        GetComponent<NavMeshAgent>().enabled = true;
+    }
+
+    #endregion
+
+    #region Public Methods
+
+    /// <summary>
     /// Simply restarts our AI if it has reached the stop point (fyi, it only will work on STOP_AT_END behaviour.)
     /// </summary>
     public void ResetStoppedAI() {
@@ -142,4 +157,22 @@ public class WW_WaterRobot : MonoBehaviour {
         m_isStoppedAtEnd = false;
         m_agent.SetDestination(m_path.GetWaypointPositionFromIndex(1));
     }
+
+    /// <summary>
+    /// Sets the AI to a desired state
+    /// </summary>
+    /// <param name="a_state">The off/on state</param>
+    public void SetAI(bool a_state) {
+        GetComponent<NavMeshAgent>().enabled = a_state;
+    }
+
+    /// <summary>
+    /// Enables the ai after 'x' amount of seconds
+    /// </summary>
+    /// <param name="a_time">Time in seconds to enable</param>
+    public void EnableAiAfterTime(float a_time) {
+        StartCoroutine(ReEnableTimer(a_time));
+    }
+
+    #endregion
 }
