@@ -1,7 +1,5 @@
 fileFormatVersion: 2
-guid: bd9cdb28dc139574f9bdd6f22aaacb2f
-timeCreated: 1502950971
-licenseType: Free
+guid: e015779cf97382444bbaea1177bb1c89
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
@@ -80,6 +78,7 @@ ModelImporter:
     4300024: handle
     4300026: door
     4300028: cassette
+    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -104,7 +103,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
@@ -142,7 +141,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
