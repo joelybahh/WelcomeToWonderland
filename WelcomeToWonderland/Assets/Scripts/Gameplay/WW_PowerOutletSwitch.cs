@@ -4,51 +4,67 @@ using UnityEngine;
 
 public class WW_PowerOutletSwitch : MonoBehaviour {
 
+    public enum eSwitchState {
+        ON,
+        OFF
+    }
+
     private HingeJoint m_switchJoint;
     private JointSpring m_spring;
 
-    private bool m_switchOn = true;
+    private int m_switchOn = 0;
 
     private float m_min;
     private float m_max;
 
-    public bool m_switchState;
+    //public bool m_switchState;
 
     private float offsetOn;
     private float offsetOff;
     public float currentRot;
+
+    public eSwitchState m_switchState = eSwitchState.OFF;
 
     void Start() {
         m_switchJoint = GetComponent<HingeJoint>();
         m_spring = m_switchJoint.spring;
         m_max = m_switchJoint.limits.max;
         m_min = m_switchJoint.limits.min;
-        m_switchOn = true;
+        m_switchOn = 0;
         offsetOn = 91.0f;
         offsetOff = 93.0f;
     }
     
     void Update() {
-        m_switchState = !m_switchOn;
         currentRot = Quaternion.Angle(Quaternion.identity, this.transform.rotation);
-        if (currentRot > offsetOn && m_switchOn) {
-            SetSwitch(false);
-        } else if(currentRot < offsetOff && !m_switchOn) {
-            SetSwitch(true);
+
+        switch(m_switchState) {
+            case eSwitchState.ON:  CheckForSwitchOff(); break;
+            case eSwitchState.OFF: CheckForSwitchOn();  break;
         }
 
-        if (m_switchOn) m_spring.targetPosition = m_min;
+        UpdateSwitchLimits();
+    }
+
+    private void SetSwitch(int a_on) {
+        m_switchOn = a_on;
+        m_switchState = (eSwitchState)m_switchOn;
+    }
+
+    private void CheckForSwitchOff() {
+        if (currentRot < offsetOn)
+            SetSwitch(1);
+    }
+
+    private void CheckForSwitchOn() {
+        if(currentRot > offsetOff)
+            SetSwitch(0);
+    }
+
+    private void UpdateSwitchLimits() {
+        if (m_switchState == eSwitchState.OFF) m_spring.targetPosition = m_min;
         else m_spring.targetPosition = m_max - 1;
-        
+
         m_switchJoint.spring = m_spring;
     }
-
-    private void SetSwitch(bool a_on) {
-        m_switchOn = a_on;
-    }
-
-    private void ToggleSwitch() {
-        m_switchOn = !m_switchOn;
-    }
-
 }
