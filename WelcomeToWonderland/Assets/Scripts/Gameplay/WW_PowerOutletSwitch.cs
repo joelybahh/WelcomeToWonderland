@@ -17,8 +17,6 @@ public class WW_PowerOutletSwitch : MonoBehaviour {
     private float m_min;
     private float m_max;
 
-    //public bool m_switchState;
-
     private float offsetOn;
     private float offsetOff;
     public float currentRot;
