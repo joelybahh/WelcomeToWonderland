@@ -6,7 +6,7 @@ using UnityEngine.Events;
 /// <summary>
 /// A class that handles the logic for the spinner puzzle
 /// </summary>
-public class WW_SpinnerPuzzle : MonoBehaviour {
+public class WW_SpinnerPuzzle : WW_Puzzle {
 
     [Header("Ring References")]
     [SerializeField] private NewtonVR.NVRLetterSpinner m_outerSpinner;
