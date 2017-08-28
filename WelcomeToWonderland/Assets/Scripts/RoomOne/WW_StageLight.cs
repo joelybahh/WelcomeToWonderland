@@ -6,7 +6,7 @@ public class WW_StageLight : MonoBehaviour {
     [SerializeField] Light m_light;
     bool m_isPowered;
     private void Awake( ) {
-        m_light = GetComponent<Light>();
+        //m_light = GetComponent<Light>();
     }
     public bool GetPowered{
         get {

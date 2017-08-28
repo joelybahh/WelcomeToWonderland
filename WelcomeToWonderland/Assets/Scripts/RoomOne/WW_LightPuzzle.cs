@@ -13,6 +13,9 @@ public class WW_LightPuzzle : WW_Puzzle {
         DisableAllLights();
     }
 
+    private void Start() {
+    }
+
     void DisableAllLights( ) {
         for( int i = 0; i < m_lights.Length; i++ ) {
             m_lights[i].ToggleLight(false) ;
