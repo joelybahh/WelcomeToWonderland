@@ -4,23 +4,24 @@ using UnityEngine;
 
 public class WW_StageLight : MonoBehaviour {
     [SerializeField] Light m_light;
+    [SerializeField]
     bool m_isPowered;
     private void Awake( ) {
-        //m_light = GetComponent<Light>();
+        m_isPowered = false;
     }
     public bool GetPowered{
         get {
             return m_isPowered;
         }
         set {
-            if ( value ) { ToggleLight(true); }
-            else { ToggleLight(false); }
             m_isPowered = value;
+            if (!m_isPowered) { m_light.enabled = false;}
             
         }
     }
 
     public void ToggleLight(bool a_bool ) {
-        m_light.enabled = a_bool;
+        if(m_isPowered) m_light.enabled = a_bool;
+        else { m_light.enabled = false; }
     }
 }

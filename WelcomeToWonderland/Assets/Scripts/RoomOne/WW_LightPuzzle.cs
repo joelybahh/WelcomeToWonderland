@@ -24,13 +24,23 @@ public class WW_LightPuzzle : WW_Puzzle {
 
     private void Update( ) {
         m_timer += Time.deltaTime;
-        if ( m_timer > 0.0f && m_timer < 1.0f ) { DisableAllLights(); m_lights[2].ToggleLight(true); }
+        if ( m_timer > 0.0f && m_timer < 1.0f ) {
+            DisableAllLights();
+            m_lights[2].ToggleLight(true);
+        }
 
-        if ( m_timer > 1.0f && m_timer < 2.0f ) { DisableAllLights(); m_lights[0].ToggleLight(true); }
+        if ( m_timer > 1.0f && m_timer < 2.0f ) {
+            DisableAllLights();
+            m_lights[0].ToggleLight(true);
+        }
 
-        if ( m_timer > 2.0f && m_timer < 3.0f ) { DisableAllLights(); m_lights[1].ToggleLight(true); }
+        if ( m_timer > 2.0f && m_timer < 3.0f ) {
+            DisableAllLights();
+            m_lights[1].ToggleLight(true); }
 
-        if ( m_timer > 3.0f && m_timer < 4.0f ) { DisableAllLights(); m_lights[3].ToggleLight(true); }
+        if ( m_timer > 3.0f && m_timer < 4.0f ) {
+            DisableAllLights();
+            m_lights[3].ToggleLight(true); }
 
         if ( m_timer > 4.0f && m_timer < 6.0f ) { DisableAllLights(); }
 
