@@ -15,7 +15,7 @@ public class WW_StageLight : MonoBehaviour {
         set {
             m_isPowered = value;
             if ( m_isPowered ) m_SetId = m_identifer++; 
-            if (!m_isPowered) { m_light.enabled = false;}
+            if (!m_isPowered) { m_SetId = 0; m_identifer--;  m_light.enabled = false;}
             
         }
     }
