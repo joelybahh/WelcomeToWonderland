@@ -62,7 +62,7 @@ public class WW_SpinnerPuzzle : WW_Puzzle {
         m_spinnerCenterRot = m_centerSpinner.CurrentAngle;
 
         if (m_button.ButtonDown) {
-            if (PuzzleComplete()) { m_OnPuzzleComplete.Invoke(); Debug.Log("Solved!!!!!!"); }
+            if (CheckPuzzle()) { m_OnPuzzleComplete.Invoke(); Debug.Log("Solved!!!!!!"); }
         }
     }
 
@@ -92,7 +92,7 @@ public class WW_SpinnerPuzzle : WW_Puzzle {
     /// Checks if the puzzle is complete.
     /// </summary>
     /// <returns>A bool that states whether or not you have completed the puzzle</returns>
-    private bool PuzzleComplete() {
+    public override bool CheckPuzzle() {
         return (m_spinnerOuterRot  >= (m_outerDesiredRot -  m_errorThresh) && m_spinnerOuterRot  <= (m_outerDesiredRot  + m_errorThresh)) &&
                (m_spinnerMiddleRot >= (m_middleDesiredRot - m_errorThresh) && m_spinnerMiddleRot <= (m_middleDesiredRot + m_errorThresh)) &&
                (m_spinnerCenterRot >= (m_centerDesiredRot - m_errorThresh) && m_spinnerCenterRot <= (m_centerDesiredRot + m_errorThresh)) ? true : false;

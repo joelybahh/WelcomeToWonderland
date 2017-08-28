@@ -17,13 +17,13 @@ public class WW_NeedlePhysics : MonoBehaviour {
     void OnCollisionEnter(Collision a_other) {
         if(a_other.collider.tag == "Stopper") {
             //m_hinge.useSpring = false;
-            m_spinnerHinge.useMotor = true;
+            //m_spinnerHinge.useMotor = true;
         }
     }
 
     void OnCollisionExit(Collision a_other) {
         if (a_other.collider.tag == "Stopper") {
-            m_hinge.useSpring = true;
+            //m_hinge.useSpring = true;
             //m_spinnerHinge.useMotor = false;
         }
     }
