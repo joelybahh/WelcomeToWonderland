@@ -6,14 +6,16 @@ using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(HingeJoint))]
-public class WW_PowerOutletSwitch : MonoBehaviour {
+public class WW_FlickSwitch : MonoBehaviour {
 
     public enum eSwitchState {
-        ON,
-        OFF
+        LEFT,
+        RIGHT
     }
-    [SerializeField] UnityEvent m_OnON;
-    [SerializeField] UnityEvent m_OnOFF;
+    [SerializeField]
+    UnityEvent m_LeftON;
+    [SerializeField]
+    UnityEvent m_RightOFF;
 
     private HingeJoint m_switchJoint;
     private JointSpring m_spring;
@@ -27,9 +29,9 @@ public class WW_PowerOutletSwitch : MonoBehaviour {
     public float offsetOff = 93.0f;
     public float currentRot;
 
-    public bool m_startOn = false;
+    public bool isFlicker = false;
 
-    public eSwitchState m_switchState = eSwitchState.OFF;
+    public eSwitchState m_switchState = eSwitchState.RIGHT;
 
     void Start() {
         m_switchJoint = GetComponent<HingeJoint>();
@@ -37,20 +39,16 @@ public class WW_PowerOutletSwitch : MonoBehaviour {
         m_max = m_switchJoint.limits.max;
         m_min = m_switchJoint.limits.min;
         m_switchOn = 0;
-
-        if(m_startOn) {
-            transform.rotation = new Quaternion(45, transform.rotation.y, transform.rotation.z, 1);
-        }
     }
-    
+
     void Update() {
-        currentRot = Quaternion.Angle(Quaternion.identity, this.transform.rotation);
+        currentRot = transform.rotation.eulerAngles.y;
         switch (m_switchState) {
-            case eSwitchState.ON: CheckForSwitchOff(); break;
-            case eSwitchState.OFF: CheckForSwitchOn(); break;
+            case eSwitchState.LEFT: CheckForSwitchOff(); break;
+            case eSwitchState.RIGHT: CheckForSwitchOn(); break;
         }
-        
-        
+
+
 
         UpdateSwitchLimits();
     }
@@ -65,28 +63,20 @@ public class WW_PowerOutletSwitch : MonoBehaviour {
     private void CheckForSwitchOff() {
         if (currentRot < offsetOn) {
             SetSwitch(1);
-            m_OnOFF.Invoke();
+            m_RightOFF.Invoke();
         }
     }
-
-    private void CheckForSwitchOff(int a_toChangeTo) {
-        if (currentRot < offsetOn) {
-            SetSwitch(a_toChangeTo);
-            m_OnOFF.Invoke();
-        }
-    }
-
 
     private void CheckForSwitchOn() {
         if (currentRot > offsetOff) {
             SetSwitch(0);
-            m_OnON.Invoke();
+            m_LeftON.Invoke();
         }
 
     }
 
     private void UpdateSwitchLimits() {
-        if (m_switchState == eSwitchState.OFF) m_spring.targetPosition = m_min;
+        if (m_switchState == eSwitchState.RIGHT) m_spring.targetPosition = m_min;
         else m_spring.targetPosition = m_max - 1;
 
         m_switchJoint.spring = m_spring;

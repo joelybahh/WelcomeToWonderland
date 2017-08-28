@@ -5,7 +5,6 @@ using UnityEngine;
 public class WW_StageLight : MonoBehaviour {
     [SerializeField] Light m_light;
     [SerializeField] bool m_isPowered;
-    [SerializeField] static int m_identifer;
     [SerializeField] public int m_SetId;
  
     public bool GetPowered{
@@ -14,9 +13,9 @@ public class WW_StageLight : MonoBehaviour {
         }
         set {
             m_isPowered = value;
-            if ( m_isPowered ) m_SetId = m_identifer++; 
-            if (!m_isPowered) { m_SetId = 0; m_identifer--;  m_light.enabled = false;}
-            
+            if ( m_isPowered ) m_SetId = WW_LightPuzzle.m_identifier++; 
+            if (!m_isPowered) { m_SetId = 0; WW_LightPuzzle.m_identifier--;  m_light.enabled = false;}
+            Debug.Log(WW_LightPuzzle.m_identifier); 
         }
     }
     private void Awake( ) {
