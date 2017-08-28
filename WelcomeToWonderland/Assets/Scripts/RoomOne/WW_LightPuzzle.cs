@@ -20,25 +20,26 @@ public class WW_LightPuzzle : WW_Puzzle {
         }
     }
 
-    private void Update( ) {
-        m_timer += Time.deltaTime;
+    void EnableAllLights( ) {
         for ( int i = 0; i < m_lights.Length; i++ ) {
-            if ( !m_lights[i].GetPowered ) return;
+            m_lights[i].ToggleLight(true);
         }
-
-        for ( int i = 0; i < m_lights.Length; i++ ) {
-            if(m_lights[i].m_SetId != m_PuzzleKey[i] ) {
-                PuzzleCorrect = false;
-            }
-            else { PuzzleCorrect = true;}
-        }
-
-        
-
-        if ( m_timer > 4.0f && m_timer < 6.0f ) { DisableAllLights(); }
-
-        else if(m_timer > 6.0f) { m_timer = 0.0f; }
-
     }
 
+    private void Update( ) {
+        PuzzleCorrect = true;
+        for ( int i = 0; i < m_lights.Length; i++ ) {
+
+            if ( m_lights[i].m_SetId == m_PuzzleKey[i] ) { m_lights[i].Correct(); }
+            else { m_lights[i].Incorrect(); PuzzleCorrect = false; }
+        }
+        m_timer += Time.deltaTime;
+        if(m_timer > 5.0f ) {
+            EnableAllLights();
+        }
+        if(m_timer > 5.3f) {
+            DisableAllLights();
+            m_timer = 0.0f;
+        }
+    }
 }
