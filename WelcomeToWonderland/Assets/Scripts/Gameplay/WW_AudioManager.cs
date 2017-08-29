@@ -25,6 +25,13 @@ namespace WW.Managers {
             m_audioSource = GetComponent<AudioSource>();
         }
 
+        [ExecuteInEditMode]
+        void Start() {
+            for(int i = 0; i < m_voiceLines.Count; i++) {
+                m_voiceLines[i].m_index = i;
+            }
+        }
+
         /// <summary>
         /// Plays an audio file based on its index in the list of voiceLines
         /// </summary>
@@ -40,6 +47,14 @@ namespace WW.Managers {
                 Debug.LogError("Error Detected! -- The voice line you are attempting to play at index [" + a_voiceLineIndex + "] does not contain an audio clip!");
                 return;
             }
+
+            if ( m_voiceLines[(int) a_voiceLineIndex].m_onlyPlaysOnce) {
+                if ( m_voiceLines[(int) a_voiceLineIndex].m_hasPlayed) {
+                    return;
+                } else {
+                    m_voiceLines[(int) a_voiceLineIndex].m_hasPlayed = true;
+                }
+            }           
 
             m_audioSource.PlayOneShot(aClip);
         }
@@ -70,5 +85,10 @@ namespace WW.Managers {
     public class WW_VoiceLine {
         public string m_nameOfLine;
         public AudioClip m_clipToPlay;
+
+        public bool m_onlyPlaysOnce;
+        public int m_index;
+
+        [HideInInspector] public bool m_hasPlayed;
     }
 }
