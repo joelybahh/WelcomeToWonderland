@@ -2,31 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WW_SwitchStatusRenderer : MonoBehaviour {
-    
-    [Header("Status Object References")]
-    [SerializeField] private GameObject[] m_statusObjects = new GameObject[2];
+namespace WW.Interactables.Visual {
+    public class WW_SwitchStatusRenderer : MonoBehaviour {
 
-    [Header("Indicator Light Materials")]
-    [SerializeField] private Material m_greenIndicatorMat;
-    [SerializeField] private Material m_redIndicatorMat;
+        [Header("Status Object References")]
+        [SerializeField]
+        private GameObject[] m_statusObjects = new GameObject[2];
 
-    private WW_FlickSwitch m_switch;
-    private Renderer m_renderer;
+        [Header("Indicator Light Materials")]
+        [SerializeField]
+        private Material m_greenIndicatorMat;
+        [SerializeField]
+        private Material m_redIndicatorMat;
 
-    private Light[] m_statusLights = new Light[2];
+        private WW_FlickSwitch m_switch;
+        private Renderer m_renderer;
 
-	void Start () {
-        m_switch = GetComponent<WW_FlickSwitch>();
-        m_renderer = GetComponent<Renderer>();
-        for(int i = 0; i < m_statusObjects.Length; i++) {
-            m_statusLights[i] = m_statusObjects[i].GetComponentInChildren<Light>();
+        private Light[] m_statusLights = new Light[2];
+
+        void Start() {
+            m_switch = GetComponent<WW_FlickSwitch>();
+            m_renderer = GetComponent<Renderer>();
+            for ( int i = 0; i < m_statusObjects.Length; i++ ) {
+                m_statusLights[i] = m_statusObjects[i].GetComponentInChildren<Light>();
+            }
         }
-    }
 
-    public void SetStatusLight() {
-        switch (m_switch.m_switchState) {
-            case WW_FlickSwitch.eSwitchState.LEFT: {
+        public void SetStatusLight() {
+            switch ( m_switch.m_switchState ) {
+                case WW_FlickSwitch.eSwitchState.LEFT: {
                     m_statusObjects[0].GetComponent<Renderer>().material = m_greenIndicatorMat;
                     m_statusObjects[1].GetComponent<Renderer>().material = m_redIndicatorMat;
 
@@ -34,7 +38,7 @@ public class WW_SwitchStatusRenderer : MonoBehaviour {
                     m_statusLights[1].color = Color.red;
                     break;
                 }
-            case WW_FlickSwitch.eSwitchState.RIGHT: {
+                case WW_FlickSwitch.eSwitchState.RIGHT: {
                     m_statusObjects[1].GetComponent<Renderer>().material = m_greenIndicatorMat;
                     m_statusObjects[0].GetComponent<Renderer>().material = m_redIndicatorMat;
 
@@ -42,6 +46,7 @@ public class WW_SwitchStatusRenderer : MonoBehaviour {
                     m_statusLights[0].color = Color.red;
                     break;
                 }
+            }
         }
     }
 }

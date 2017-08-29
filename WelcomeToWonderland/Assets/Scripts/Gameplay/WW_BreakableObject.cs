@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WW_BreakableObject : MonoBehaviour {
+namespace WW {
+    public class WW_BreakableObject : MonoBehaviour {
 
-    [SerializeField] GameObject m_remains;
-    private void Update( ) {
+        [SerializeField]
+        GameObject m_remains;
+        private void Update() {
 
 
-        if ( Input.GetKey(KeyCode.Space )) {
-            Instantiate(m_remains, transform.position, transform.rotation);
-            Destroy(gameObject);
+            if ( Input.GetKey(KeyCode.Space) ) {
+                Instantiate(m_remains, transform.position, transform.rotation);
+                Destroy(gameObject);
+            }
         }
     }
 }
