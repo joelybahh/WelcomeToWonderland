@@ -17,6 +17,8 @@ public class SteamVR_Teleporter : MonoBehaviour
     public TeleportType teleportType = TeleportType.TeleportTypeUseZeroY;
     public string teleportTag = "";
 
+    public bool CanTeleport = false;
+
     public UnityEvent OnTeleportBegin;
     public UnityEvent OnTeleportEnd;
 
@@ -110,6 +112,8 @@ public class SteamVR_Teleporter : MonoBehaviour
     }
     void DoReleaseClick(object sender, ClickedEventArgs e)
     {
+        if (!CanTeleport) return;
+
         if (teleportOnRelease)
         {
             // First get the current Transform of the the reference space (i.e. the Play Area, e.g. CameraRig prefab)

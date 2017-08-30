@@ -2,17 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeadsetClipping : MonoBehaviour {
+namespace WW.Movement {
+    public class HeadsetClipping : MonoBehaviour {
 
-    public static bool m_isClipping = false;
+        public static bool m_isClipping = false;
+        public SteamVR_Teleporter m_teleRef;
+        public SteamVR_LaserPointer m_pointRef;
 
-    void OnTriggerStay(Collider a_other) {
-        if (a_other.tag != "MainCamera") {
-            m_isClipping = true;
-        } else {
-            m_isClipping = false;
+        void OnTriggerStay(Collider a_other) {
+            if (a_other.tag != "MainCamera") {
+                m_isClipping = true;
+                m_teleRef.CanTeleport = false;
+                m_pointRef.enabled = false;
+            } else {
+                m_isClipping = false;
+                m_teleRef.CanTeleport = true;
+                m_pointRef.enabled = true;
+            }
+
+            //Debug.Log(m_isClipping);
         }
-
-        //Debug.Log(m_isClipping);
     }
 }
