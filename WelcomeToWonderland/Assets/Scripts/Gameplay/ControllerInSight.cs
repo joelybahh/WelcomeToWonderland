@@ -25,7 +25,7 @@ namespace WW.Movement {
             Ray ray = new Ray(m_headsetRef.position, dir);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit)) {
+            if (UnityEngine.Physics.Raycast(ray, out hit)) {
                 if (hit.transform.tag != "Player") {
                     m_controllerInSight = false;
                     m_pointerReference.enabled = false;

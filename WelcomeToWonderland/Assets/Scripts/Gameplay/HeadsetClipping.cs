@@ -19,8 +19,6 @@ namespace WW.Movement {
                 m_teleRef.CanTeleport = true;
                 m_pointRef.enabled = true;
             }
-
-            //Debug.Log(m_isClipping);
         }
     }
 }
