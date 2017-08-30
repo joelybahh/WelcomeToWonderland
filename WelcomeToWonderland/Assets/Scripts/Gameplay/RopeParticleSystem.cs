@@ -41,7 +41,7 @@ namespace WW.Particles {
             if ( m_lineRenderer == null ) {
                 m_lineRenderer = gameObject.AddComponent<LineRenderer>();
             }
-            m_lineRenderer.numPositions = m_numSegments;
+            m_lineRenderer.positionCount = m_numSegments;
             m_lineRenderer.startWidth = .02f;
             m_lineRenderer.endWidth = .02f;
             m_lineRenderer.startColor = Color.cyan;

@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class HeadsetClipping : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public static bool m_isClipping = false;
+
+    void OnTriggerStay(Collider a_other) {
+        if (a_other.tag != "MainCamera") {
+            m_isClipping = true;
+        } else {
+            m_isClipping = false;
+        }
+
+        //Debug.Log(m_isClipping);
+    }
 }
