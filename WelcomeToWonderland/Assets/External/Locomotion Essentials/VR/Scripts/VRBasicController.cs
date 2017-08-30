@@ -67,11 +67,11 @@ namespace Loco.VR.Input {
 
         void Start() {
             m_trackedObj = GetComponent<SteamVR_TrackedObject>();
-            m_deivce = SteamVR_Controller.Input((int)m_trackedObj.index);
+             m_deivce = SteamVR_Controller.Input((int)m_trackedObj.index);
         }
 
         void Update() {
-            m_deivce = SteamVR_Controller.Input((int)m_trackedObj.index);
+           m_deivce = SteamVR_Controller.Input((int)m_trackedObj.index);
 
             #region Vive Touchpad logic
 
