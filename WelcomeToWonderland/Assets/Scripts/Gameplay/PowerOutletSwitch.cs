@@ -41,7 +41,7 @@ namespace WW.Interactables {
             m_switchOn = 0;
 
             if ( m_startOn ) {
-                transform.rotation = new Quaternion(45, transform.rotation.y, transform.rotation.z, 1);
+                transform.rotation = new Quaternion(32, transform.rotation.y, transform.rotation.z, 1);
             }
         }
 
