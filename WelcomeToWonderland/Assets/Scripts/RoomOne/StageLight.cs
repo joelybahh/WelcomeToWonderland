@@ -17,9 +17,8 @@ namespace WW.Puzzles {
             }
             set {
                 m_isPowered = value;
-                if ( m_isPowered ) m_SetId = LightPuzzle.m_identifier++;
-                if ( !m_isPowered ) { m_SetId = 0; LightPuzzle.m_identifier--; m_light.enabled = false; }
-                Debug.Log(LightPuzzle.m_identifier);
+                
+                if ( !m_isPowered ) { m_light.enabled = false; }
             }
         }
         private void Awake() {

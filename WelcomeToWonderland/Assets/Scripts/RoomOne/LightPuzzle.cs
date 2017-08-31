@@ -38,12 +38,11 @@ namespace WW.Puzzles {
                 if ( m_lights[i].m_SetId == m_PuzzleKey[i] ) { m_lights[i].Correct(); } else { m_lights[i].Incorrect(); PuzzleCorrect = false; }
             }
 
-            EnableAllLights();
-
             if(PuzzleCorrect) CompletePuzzle();
             
         }
-        void TogglePowerLights( bool aBool ) {
+
+        public void TogglePowerLights( bool aBool ) {
             for ( int i = 0; i < m_lights.Length; i++ ) {
                 m_lights[i].GetPowered = aBool;
             }
