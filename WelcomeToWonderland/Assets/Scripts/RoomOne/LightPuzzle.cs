@@ -38,8 +38,6 @@ namespace WW.Puzzles {
                 if ( m_lights[i].m_SetId == m_PuzzleKey[i] ) { m_lights[i].Correct(); } else { m_lights[i].Incorrect(); PuzzleCorrect = false; }
             }
 
-            EnableAllLights();
-
             if(PuzzleCorrect) CompletePuzzle();
             
         }
