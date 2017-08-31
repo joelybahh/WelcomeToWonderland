@@ -12,9 +12,9 @@ namespace WW.Movement {
         public float m_distanceThreshold;
         private float m_currentHeight;
 
-        public Vector3 m_lastGoodStepPoint;
-        
-        public Vector3 curPoint;
+        private Vector3 m_lastGoodStepPoint;       
+        private Vector3 curPoint;
+
         void Start() {
            m_currentHeight = 0;
         }
