@@ -12,6 +12,7 @@ namespace WW.Puzzles.Helper {
         }
 
         void OnTriggerEnter(Collider a_other) {
+                Debug.Log(a_other.tag);
             if(a_other.tag == "CameraButton") {
                 m_spinnerPuzzleRef.Button = a_other.GetComponentInChildren<NewtonVR.NVRButton>();
             }
