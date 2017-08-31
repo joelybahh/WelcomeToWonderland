@@ -27,8 +27,9 @@ namespace WW.Puzzles {
         }
 
         public void ToggleLight( bool a_bool ) {
-            if ( m_isPowered ) m_light.enabled = a_bool;
-            else { m_light.enabled = false; }
+            if ( m_isPowered ) m_SetId = LightPuzzle.m_identifier++; m_light.enabled = a_bool;
+            if ( !m_isPowered ) { m_SetId = 0; LightPuzzle.m_identifier--; m_light.enabled = false; }
+
         }
         public void Incorrect() {
             m_light.color = Color.red;
