@@ -13,7 +13,7 @@ namespace WW.Movement {
         private float m_currentHeight;
 
         public Vector3 m_lastGoodStepPoint;
-        public Vector3 m_lastGoodFloorPoint;
+        
         public Vector3 curPoint;
         void Start() {
            m_currentHeight = 0;
@@ -21,7 +21,7 @@ namespace WW.Movement {
         
         void Update() {
             // Get Current Height from the distance from the head to ground using a raycast
-            Ray ray = new Ray(transform.position, Vector3.down);
+            Ray ray = new Ray(transform.GetChild(0).position, Vector3.down);
             RaycastHit hit;
 
             if(UnityEngine.Physics.Raycast(ray, out hit, Mathf.Infinity, m_layerMask)) {
@@ -48,6 +48,9 @@ namespace WW.Movement {
                 // Step the player up
             // else if the CurrentHeight is less than the raycast distance - threshold
                 // Step the player down
+        }
+        public void SetGoodstep() {
+            m_lastGoodStepPoint = m_rigRef.position;
         }
     }
 }
