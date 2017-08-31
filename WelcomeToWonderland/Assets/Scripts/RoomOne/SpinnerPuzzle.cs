@@ -30,12 +30,6 @@ namespace WW.Puzzles {
         [SerializeField]
         private float m_errorThresh = 10.0f;
 
-        [Header("Puzzle Events")]
-        [SerializeField]
-        private UnityEvent m_OnPuzzleInitialized;
-        [SerializeField]
-        private UnityEvent m_OnPuzzleComplete;
-
         [Header("Indicator Light References")]
         [SerializeField]
         private Light m_redLight;
@@ -53,12 +47,17 @@ namespace WW.Puzzles {
         private float m_spinnerCenterRot;
 
         private NewtonVR.NVRLetterSpinner spinner;
-        private bool m_poweredOn = true;
+
+        private bool m_poweredOn = false;
         private bool m_hasInitialized = false;
 
         public bool PowerOn {
             get { return m_poweredOn; }
             set { m_poweredOn = value; }
+        }
+
+        public NewtonVR.NVRButton Button {
+            set { m_button = value; }
         }
 
         private void Update() {
@@ -75,8 +74,10 @@ namespace WW.Puzzles {
             m_spinnerMiddleRot = m_middleSpinner.CurrentAngle;
             m_spinnerCenterRot = m_centerSpinner.CurrentAngle;
 
-            if ( m_button.ButtonDown ) {
-                if ( CheckPuzzle() ) { m_OnPuzzleComplete.Invoke(); Debug.Log("Solved!!!!!!"); }
+            if (m_button != null) {
+                if (m_button.ButtonDown) {
+                    if (CheckPuzzle()) { CompletePuzzle(); SetVictoryColor(); }
+                }
             }
         }
 
@@ -88,7 +89,7 @@ namespace WW.Puzzles {
             m_spinnerMiddleRot = m_middleSpinner.CurrentAngle;
             m_spinnerCenterRot = m_centerSpinner.CurrentAngle;
 
-            m_OnPuzzleInitialized.Invoke();
+            m_onInitialize.Invoke();
             m_hasInitialized = true;
         }
 

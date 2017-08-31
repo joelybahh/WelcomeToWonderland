@@ -78,6 +78,6 @@ public class SE_TabletTouch : MonoBehaviour {
 
     public void SetupInputField()
     {
-        m_inputField = GameObject.Find("Input").GetComponent<UnityEngine.UI.Text>();
+       // m_inputField = GameObject.Find("Input").GetComponent<UnityEngine.UI.Text>();
     }
 }

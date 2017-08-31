@@ -48,5 +48,15 @@ namespace WW.Interactables.Visual {
                 }
             }
         }
+
+        public void HardSetStatusLight(bool a_on) {
+            if(a_on) {
+                m_statusObjects[0].GetComponent<Renderer>().material = m_greenIndicatorMat;
+                m_statusLights[0].color = Color.green;
+            } else {
+                m_statusObjects[0].GetComponent<Renderer>().material = m_redIndicatorMat;
+                m_statusLights[0].color = Color.red;
+            }
+        }
     }
 }

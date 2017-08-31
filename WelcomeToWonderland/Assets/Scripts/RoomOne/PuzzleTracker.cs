@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PuzzleTracker : MonoBehaviour {
-    
-	void Start () {
-		
-	}
-	
-	void Update () {
-		
-	}
+namespace WW.Puzzles {
+    public class PuzzleTracker : MonoBehaviour {
+
+        void Start() {
+
+        }
+
+        void Update() {
+
+        }
+    }
 }
