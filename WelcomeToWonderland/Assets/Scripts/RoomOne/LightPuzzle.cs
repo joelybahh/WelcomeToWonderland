@@ -35,12 +35,12 @@ namespace WW.Puzzles {
         private void Update() {
             PuzzleCorrect = true;
             for ( int i = 0; i < m_lights.Length; i++ ) {
-
                 if ( m_lights[i].m_SetId == m_PuzzleKey[i] ) { m_lights[i].Correct(); } else { m_lights[i].Incorrect(); PuzzleCorrect = false; }
             }
-            //m_timer += Time.deltaTime;
-            //if ( m_timer > 5.0f ) {
-                EnableAllLights();
+
+            EnableAllLights();
+
+            if(PuzzleCorrect) CompletePuzzle();
             
         }
     }
