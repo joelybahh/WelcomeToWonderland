@@ -43,5 +43,10 @@ namespace WW.Puzzles {
             if(PuzzleCorrect) CompletePuzzle();
             
         }
+        void TogglePowerLights( bool aBool ) {
+            for ( int i = 0; i < m_lights.Length; i++ ) {
+                m_lights[i].GetPowered = aBool;
+            }
+        }
     }
 }
