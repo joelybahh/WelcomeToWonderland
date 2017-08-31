@@ -10,7 +10,8 @@ namespace WW.Puzzles {
 
         [SerializeField]
         UnityEvent m_Outcome;
-
+        [SerializeField]
+        KeyCode key;
         private bool doOnce = true;
         private void Start() {
             foreach ( Puzzle puzzle in m_puzzleTriggers ) {
@@ -31,6 +32,11 @@ namespace WW.Puzzles {
             }
 
         }
+
+        void Update() {
+            if (Input.GetKeyUp(key)) CompletePuzzle();
+        }
+
         void CheckCompleted( int a_Override ) {
             CompletePuzzle();
         }

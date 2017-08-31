@@ -18,21 +18,18 @@ namespace WW.Puzzles {
             }
             set {
                 m_isPowered = value;
-                if ( m_isPowered && m_isOn ) { ToggleLight(true); }
+                if ( m_isPowered && m_isOn) { ToggleLight(true); } 
                 if ( !m_isPowered ) { m_light.enabled = false; }
-                Debug.Log(LightPuzzle.m_identifier);
             }
         }
-        private void Awake( ) {
+        private void Awake() {
             m_isPowered = false;
         }
 
-        public void ToggleLight(bool a_bool) {
+        public void ToggleLight( bool a_bool ) {
             m_isOn = a_bool;
-            if ( m_isOn ) m_SetId = LightPuzzle.m_identifier++;
-            if ( !m_isOn ) m_SetId = LightPuzzle.m_identifier--;
-            if ( GetPowered )  m_light.enabled = a_bool; 
-            else  m_light.enabled = false; 
+            if ( m_isPowered ) m_SetId = ++LightPuzzle.m_identifier; m_light.enabled = a_bool;
+            if ( !m_isPowered ) { m_SetId = 0; --LightPuzzle.m_identifier; m_light.enabled = false; }
             Debug.Log(LightPuzzle.m_identifier);
         }
         public void Incorrect() {

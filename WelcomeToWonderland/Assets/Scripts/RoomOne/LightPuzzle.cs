@@ -9,7 +9,7 @@ namespace WW.Puzzles {
         [SerializeField]
         float m_timer;
 
-        public static int m_identifier = 4;
+        public static int m_identifier = 0;
 
         [SerializeField]
         [Tooltip("The Number the Lights have to be assigned from 0-3. EXAMPLE Light1 = 2, light2 = 4, light3 = 1, light4 = 3. the key would be 2,4,1,3")]
@@ -17,7 +17,7 @@ namespace WW.Puzzles {
         bool PuzzleCorrect;
 
         private void Awake() {
-            DisableAllLights();
+            //DisableAllLights();
         }
 
         void DisableAllLights() {
@@ -39,9 +39,9 @@ namespace WW.Puzzles {
             }
 
             if(PuzzleCorrect) CompletePuzzle();
-            
         }
-        void TogglePowerLights( bool aBool ) {
+
+        public void TogglePowerLights( bool aBool ) {
             for ( int i = 0; i < m_lights.Length; i++ ) {
                 m_lights[i].GetPowered = aBool;
             }
