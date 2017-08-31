@@ -10,6 +10,8 @@ namespace WW.Puzzles {
 
         [SerializeField]
         UnityEvent m_Outcome;
+
+        private bool doOnce = true;
         private void Start() {
             foreach ( Puzzle puzzle in m_puzzleTriggers ) {
                 puzzle.m_handler = this;
@@ -23,7 +25,10 @@ namespace WW.Puzzles {
                     continue;
                 }
             }
-            CompletePuzzle();
+            if (doOnce) {
+                CompletePuzzle();
+                doOnce = false;
+            }
 
         }
         void CheckCompleted( int a_Override ) {
@@ -31,7 +36,7 @@ namespace WW.Puzzles {
         }
 
         void CompletePuzzle() {
-
+            m_Outcome.Invoke();
         }
     }
 }
