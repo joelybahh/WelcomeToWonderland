@@ -56,7 +56,7 @@ namespace WW {
             }
         }
 
-        private void SetGravity( bool a_on ) {
+        public void SetGravity( bool a_on ) {
             float force = Random.Range(m_minForce, m_maxForce);
             for ( int i = 0; i < m_bodies.Count; i++ ) {
                 if ( !a_on ) {
