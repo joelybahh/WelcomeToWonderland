@@ -34,7 +34,6 @@ namespace WW.Puzzles {
             if ( GetPowered )  m_light.enabled = a_bool; 
             else  m_light.enabled = false; 
             Debug.Log(LightPuzzle.m_identifier);
-
         }
         public void Incorrect() {
             m_light.color = Color.red;
