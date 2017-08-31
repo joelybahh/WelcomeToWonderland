@@ -20,7 +20,6 @@ namespace WW.Puzzles {
                 m_isPowered = value;
                 if ( m_isPowered && m_isOn) { ToggleLight(true); } 
                 if ( !m_isPowered ) { m_light.enabled = false; }
-                Debug.Log(LightPuzzle.m_identifier);
             }
         }
         private void Awake() {
@@ -29,8 +28,8 @@ namespace WW.Puzzles {
 
         public void ToggleLight( bool a_bool ) {
             m_isOn = a_bool;
-            if ( m_isPowered ) m_SetId = LightPuzzle.m_identifier++; m_light.enabled = a_bool;
-            if ( !m_isPowered ) { m_SetId = 0; LightPuzzle.m_identifier--; m_light.enabled = false; }
+            if ( m_isPowered ) m_SetId = ++LightPuzzle.m_identifier; m_light.enabled = a_bool;
+            if ( !m_isPowered ) { m_SetId = 0; --LightPuzzle.m_identifier; m_light.enabled = false; }
             Debug.Log(LightPuzzle.m_identifier);
 
         }

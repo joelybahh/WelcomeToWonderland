@@ -6,16 +6,43 @@ namespace WW.Movement {
     public class HeightChange : MonoBehaviour {
 
         public Transform m_rigRef;
+        
+        public LayerMask m_layerMask;
 
         public float m_distanceThreshold;
         private float m_currentHeight;
 
+        public Vector3 m_lastGoodStepPoint;
+        public Vector3 m_lastGoodFloorPoint;
+        public Vector3 curPoint;
         void Start() {
            m_currentHeight = 0;
         }
         
-        void FixedUpdate() {
-            // Get Current Height from the distance from the head to ground
+        void Update() {
+            // Get Current Height from the distance from the head to ground using a raycast
+            Ray ray = new Ray(transform.position, Vector3.down);
+            RaycastHit hit;
+
+            if(UnityEngine.Physics.Raycast(ray, out hit, Mathf.Infinity, m_layerMask)) {
+                if (hit.transform.tag == "Teleportable") {
+                    curPoint = hit.point;                  
+
+                    if(m_lastGoodStepPoint == Vector3.zero) {
+                        m_lastGoodStepPoint = hit.point;
+                    }
+
+                    // Step UP
+                    if (curPoint.y > m_lastGoodStepPoint.y && (curPoint.y - m_lastGoodStepPoint.y) < m_distanceThreshold) {
+                        m_lastGoodStepPoint = hit.point;
+                        m_rigRef.position = new Vector3(m_rigRef.position.x, m_lastGoodStepPoint.y, m_rigRef.position.z);
+                    } else if (curPoint.y < m_lastGoodStepPoint.y) {
+                        m_lastGoodStepPoint = hit.point;
+                        m_rigRef.position = new Vector3(m_rigRef.position.x, m_lastGoodStepPoint.y, m_rigRef.position.z);
+                    }                 
+                }
+                
+            }
 
             // if the CurrentHeight is greater than the raycast distance + threshold
                 // Step the player up

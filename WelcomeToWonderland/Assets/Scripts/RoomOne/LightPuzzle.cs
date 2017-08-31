@@ -17,7 +17,7 @@ namespace WW.Puzzles {
         bool PuzzleCorrect;
 
         private void Awake() {
-            DisableAllLights();
+            //DisableAllLights();
         }
 
         void DisableAllLights() {
