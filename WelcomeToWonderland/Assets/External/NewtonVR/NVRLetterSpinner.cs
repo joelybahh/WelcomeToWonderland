@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using System.Collections;
 
 
@@ -12,6 +13,8 @@ namespace NewtonVR
         private float RungAngleInterval;
 
         public float maxAngularVel = 4.0f;
+
+        public UnityEvent m_OnGrab;
 
         private Vector3 LastAngularVelocity = Vector3.zero;
 
@@ -55,6 +58,8 @@ namespace NewtonVR
                         this.Rigidbody.isKinematic = true;
                     }
                 }
+            } else {
+                m_OnGrab.Invoke();
             }
             
             LastAngularVelocity = this.Rigidbody.angularVelocity; 
