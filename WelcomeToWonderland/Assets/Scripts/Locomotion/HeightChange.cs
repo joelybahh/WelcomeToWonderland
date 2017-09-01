@@ -49,6 +49,10 @@ namespace WW.Movement {
             // else if the CurrentHeight is less than the raycast distance - threshold
                 // Step the player down
         }
+
+        /// <summary>
+        /// Hard sets the current good step position to the rigs current position
+        /// </summary>
         public void SetGoodstep() {
             m_lastGoodStepPoint = m_rigRef.position;
         }
