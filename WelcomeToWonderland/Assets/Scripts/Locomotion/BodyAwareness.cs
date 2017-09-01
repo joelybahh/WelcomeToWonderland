@@ -5,13 +5,11 @@ using UnityEngine;
 namespace WW.Movement {
     public class BodyAwareness : MonoBehaviour {
 
-        public Transform m_rigRef;
+        [SerializeField] private Transform m_rigRef;
+        [SerializeField] private LayerMask m_layerMask;
+        [SerializeField] private float m_distanceThreshold;
 
-        public LayerMask m_layerMask;
-
-        public float m_distanceThreshold;
         private float m_currentHeight;
-
         private Vector3 m_lastGoodStepPoint;
         private Vector3 curPoint;
         
@@ -42,6 +40,9 @@ namespace WW.Movement {
             }
         }
 
+        /// <summary>
+        /// Hard sets the last good step position to the current position, Ideal for teleporting
+        /// </summary>
         public void SetGoodstep() {
             m_lastGoodStepPoint = m_rigRef.position;
         }
