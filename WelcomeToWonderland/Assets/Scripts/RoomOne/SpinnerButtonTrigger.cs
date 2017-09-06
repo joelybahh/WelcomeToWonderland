@@ -7,14 +7,21 @@ namespace WW.Puzzles.Helper {
 
         private SpinnerPuzzle m_spinnerPuzzleRef;
 
+        [SerializeField] private NewtonVR.NVRHand m_leftHand;
+        [SerializeField] private NewtonVR.NVRHand m_rightHand;
+
         void Start() {
             m_spinnerPuzzleRef = transform.parent.GetComponent<SpinnerPuzzle>();
         }
 
-        void OnTriggerEnter(Collider a_other) {
-                Debug.Log(a_other.tag);
-            if(a_other.tag == "CameraButton") {
+        void OnTriggerStay(Collider a_other) {
+            if ( m_spinnerPuzzleRef.Button != null ) return; // if the spinner already has a button attatched, exit out of the loop.
+
+            if ( a_other.tag == "CameraButton" && ( m_leftHand.Rigidbody != a_other.GetComponent<Rigidbody>() && m_rightHand.Rigidbody != a_other.GetComponent<Rigidbody>() ) ) {
                 m_spinnerPuzzleRef.Button = a_other.GetComponentInChildren<NewtonVR.NVRButton>();
+                Rigidbody rbRef = a_other.GetComponent<Rigidbody>();
+                rbRef.isKinematic = true;
+                rbRef.useGravity = false;
             }
         }
 
