@@ -50,5 +50,17 @@ namespace WW.Puzzles {
                 m_lights[i].GetPowered = a_On;
             }
         }
+        public override void CompletePuzzle()
+        {
+            base.CompletePuzzle();
+            for (int i = 0; i < 2; i++)
+            {
+                m_lights[i].Light.color = Color.red;
+            }
+            for (int i = 2; i < 4; i++)
+            {
+                m_lights[i].Light.color = Color.blue;
+            }
+        }
     }
 }
