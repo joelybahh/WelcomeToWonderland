@@ -23,6 +23,7 @@ namespace WW.AI {
         public float m_defaultRotationSpeed = 10.0f;
         public float m_currentRotationSpeed;
 
+
         private bool m_dodgingUp = false;
         private bool m_dodgingDown = false;
 
@@ -36,7 +37,7 @@ namespace WW.AI {
             if ( !m_dodgingUp || !m_dodgingDown ) {
                 transform.RotateAround(m_center.position, m_axis, m_currentRotationSpeed * Time.deltaTime);
                 m_desiredPosition = ( transform.position - m_center.position ).normalized * m_radius + m_center.position;
-                m_desiredPosition.y = 2.0f;
+                m_desiredPosition.y = m_center.position.y;
                 transform.position = Vector3.MoveTowards(transform.position, m_desiredPosition, Time.deltaTime * m_radiusSpeed);
 
                 m_currentRotationSpeed = m_defaultRotationSpeed;
