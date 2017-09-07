@@ -17,11 +17,18 @@ namespace WW.Puzzles.Helper {
         void OnTriggerStay(Collider a_other) {
             if ( m_spinnerPuzzleRef.Button != null ) return; // if the spinner already has a button attatched, exit out of the loop.
 
-            if ( a_other.tag == "CameraButton" && ( m_leftHand.Rigidbody != a_other.GetComponent<Rigidbody>() && m_rightHand.Rigidbody != a_other.GetComponent<Rigidbody>() ) ) {
-                m_spinnerPuzzleRef.Button = a_other.GetComponentInChildren<NewtonVR.NVRButton>();
-                Rigidbody rbRef = a_other.GetComponent<Rigidbody>();
-                rbRef.isKinematic = true;
-                rbRef.useGravity = false;
+            if ( a_other.tag == "CameraButton") {               
+                if (a_other.GetComponent<NewtonVR.NVRInteractableItem>().AttachedHands.Count == 0) {
+
+                    Destroy(a_other.GetComponent<NewtonVR.NVRInteractableItem>());
+                    m_spinnerPuzzleRef.Button = a_other.GetComponentInChildren<NewtonVR.NVRButton>();
+
+                    m_spinnerPuzzleRef.Button.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+
+                    Rigidbody rbRef = a_other.GetComponent<Rigidbody>();
+                    rbRef.isKinematic = true;
+                    rbRef.useGravity = false;
+                }                
             }
         }
 

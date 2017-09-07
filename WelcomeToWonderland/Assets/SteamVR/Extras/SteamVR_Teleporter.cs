@@ -23,6 +23,7 @@ public class SteamVR_Teleporter : MonoBehaviour
     public UnityEvent OnTeleportEnd;
 
     SteamVR_LaserPointer steamVrLaser;
+    public LayerMask m_mask;
 
     Transform reference
     {
@@ -148,14 +149,14 @@ public class SteamVR_Teleporter : MonoBehaviour
             else if(teleportType == TeleportType.TeleportTaggedTerrain)
             {
                 RaycastHit hitInfo;
-                hasGroundTarget = Physics.Raycast(ray, out hitInfo);
+                hasGroundTarget = Physics.Raycast(ray, out hitInfo, Mathf.Infinity, m_mask);
                 if(hitInfo.collider.tag != teleportTag)
                 {
                     hasGroundTarget = false;
                 }
                 dist = hitInfo.distance;
 
-                Debug.Log("Teleport");
+                Debug.Log("Teleport " + hitInfo.collider.tag );
 
                 OnTeleportBegin.Invoke();
             }
