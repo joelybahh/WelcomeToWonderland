@@ -91,7 +91,7 @@ namespace NewtonVR
             }
 
 
-            if (joint.MatchRotation == true)
+            if (joint.MatchRotation == true && Item != null)
             {
                 Quaternion rotationDelta = joint.transform.rotation * Quaternion.Inverse(Item.transform.rotation);
 

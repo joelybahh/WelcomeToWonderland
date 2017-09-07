@@ -58,6 +58,7 @@ namespace WW.Puzzles {
 
         public NewtonVR.NVRButton Button {
             set { m_button = value; }
+            get { return m_button; }
         }
 
         private void Update() {
