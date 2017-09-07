@@ -11,7 +11,11 @@ namespace WW.Puzzles {
         bool m_isOn;
         [SerializeField]
         public int m_SetId = 0;
-
+        public Light Light
+        {
+            get { return m_light; }
+            set { m_light = value; }
+        }
         /// <summary>
         /// Returns the powered value, on set, also enables the lights based on whether or not it is powered
         /// </summary>
