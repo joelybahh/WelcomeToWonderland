@@ -156,8 +156,6 @@ public class SteamVR_Teleporter : MonoBehaviour
                 }
                 dist = hitInfo.distance;
 
-                Debug.Log("Teleport " + hitInfo.collider.tag );
-
                 OnTeleportBegin.Invoke();
             }
             else // If we're just staying flat on the current Y axis

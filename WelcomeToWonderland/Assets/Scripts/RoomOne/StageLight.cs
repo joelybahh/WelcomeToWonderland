@@ -46,8 +46,6 @@ namespace WW.Puzzles {
             if (GetPowered) m_light.enabled = a_On;
             else m_light.enabled = false;
 
-            Debug.Log(LightPuzzle.m_identifier);
-
         }
 
         /// <summary>

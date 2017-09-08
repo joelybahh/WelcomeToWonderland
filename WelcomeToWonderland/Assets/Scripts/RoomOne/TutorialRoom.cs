@@ -22,14 +22,20 @@ namespace WW.Puzzles {
         [SerializeField] private NewtonVR.NVRButton m_buttonToPress;
 
         private bool m_doOnce = true;
+        private bool m_hasWaitedDelayTime;
+
         private bool m_hasTeleportGlove = false;
         public bool HasTeleportGlove {
             get { return m_hasTeleportGlove; }
             set { m_hasTeleportGlove = value; }
         }
 
+        void Start() {
+            StartCoroutine(WaitTime(2));
+        }
+
         void Update() {
-            if(m_buttonToPress.ButtonDown) {
+            if(m_buttonToPress.ButtonDown && m_hasWaitedDelayTime) {
                 HasTeleportGlove = true;
             }
         }
@@ -73,6 +79,11 @@ namespace WW.Puzzles {
 
             m_wallRightRB.isKinematic = false;
             m_wallRightRB.useGravity = true;
+        }
+
+        private IEnumerator WaitTime(float a_seconds) {
+            yield return new WaitForSeconds(a_seconds);
+            m_hasWaitedDelayTime = true;
         }
     }
 }
