@@ -45,6 +45,15 @@ namespace WW.Interactables {
             }
         }
 
+        public void SetSwitchState(string a_state) {
+
+            if(a_state.ToUpper() == "ON") {
+                transform.rotation = new Quaternion(32.0f, transform.rotation.y, transform.rotation.z, 1.0f);
+            } else if (a_state.ToUpper() == "OFF") {
+                transform.rotation = new Quaternion(0.1f, transform.rotation.y, transform.rotation.z, 1.0f);
+            }
+        }
+
         void Update() {
             currentRot = Quaternion.Angle(Quaternion.identity, this.transform.rotation);
             switch ( m_switchState ) {
