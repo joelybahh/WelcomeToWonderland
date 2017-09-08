@@ -30,8 +30,10 @@ namespace WW.Interactables {
         public float offsetOff = 93.0f;
         public float currentRot;
 
+        public bool startRight = false;
         public bool isFlicker = false;
 
+        private bool doOnce = true; //HACK: fix
         public eSwitchState m_switchState = eSwitchState.RIGHT;
 
         void Start() {
@@ -40,9 +42,19 @@ namespace WW.Interactables {
             m_max = m_switchJoint.limits.max;
             m_min = m_switchJoint.limits.min;
             m_switchOn = 0;
+
+            if(startRight) {
+                transform.rotation = new Quaternion(transform.rotation.x, -39, transform.rotation.z, 1);
+            }
         }
 
         void Update() {
+            if (startRight) {
+                if (doOnce) {
+                    transform.rotation = new Quaternion(transform.rotation.x, -39, transform.rotation.z, 1);
+                    doOnce = false;
+                }
+            }
             currentRot = transform.rotation.eulerAngles.y;
             switch ( m_switchState ) {
                 case eSwitchState.LEFT: CheckForSwitchOff(); break;

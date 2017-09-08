@@ -19,15 +19,7 @@ namespace WW.Puzzles.Helper {
 
             if ( a_other.tag == "CameraButton") {               
                 if (a_other.GetComponent<NewtonVR.NVRInteractableItem>().AttachedHands.Count == 0) {
-
-                    Destroy(a_other.GetComponent<NewtonVR.NVRInteractableItem>());
-                    m_spinnerPuzzleRef.Button = a_other.GetComponentInChildren<NewtonVR.NVRButton>();
-
-                    m_spinnerPuzzleRef.Button.gameObject.GetComponent<Rigidbody>().isKinematic = false;
-
-                    Rigidbody rbRef = a_other.GetComponent<Rigidbody>();
-                    rbRef.isKinematic = true;
-                    rbRef.useGravity = false;
+                    StartCoroutine(SetKinematicAfterTime(1.0f, a_other));
                 }                
             }
         }
@@ -36,6 +28,19 @@ namespace WW.Puzzles.Helper {
             if (a_other.tag == "CameraButton") {
                 m_spinnerPuzzleRef.Button = null;
             }
+        }
+
+        private IEnumerator SetKinematicAfterTime(float a_time, Collider a_other) {
+            yield return new WaitForSeconds(a_time);
+
+            Destroy(a_other.GetComponent<NewtonVR.NVRInteractableItem>());
+            m_spinnerPuzzleRef.Button = a_other.GetComponentInChildren<NewtonVR.NVRButton>();
+
+            m_spinnerPuzzleRef.Button.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+
+            Rigidbody rbRef = a_other.GetComponent<Rigidbody>();
+            rbRef.isKinematic = true;
+            rbRef.useGravity = false;
         }
     }
 }
