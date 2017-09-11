@@ -16,6 +16,9 @@ public class BombTimer : MonoBehaviour {
     [SerializeField] float m_timer = 10.0f;
     [SerializeField] bool m_triggered;
 
+    private static bool hasBeenSetOnce = false;
+    private bool firstSet = true;
+
     private void Start()
     {
         foreach(GameObject g in UIElements)
@@ -28,6 +31,8 @@ public class BombTimer : MonoBehaviour {
 
     private void Update()
     {
+        if (hasBeenSetOnce) return;
+
         if (m_triggered)
         {
             m_timer -= Time.deltaTime;
@@ -45,7 +50,7 @@ public class BombTimer : MonoBehaviour {
         }
     }
 
-    void SetTriggered(bool aBool)
+    public void SetTriggered(bool aBool)
     {
         m_triggered = aBool;
         if (aBool)
@@ -61,6 +66,10 @@ public class BombTimer : MonoBehaviour {
             {
                 e.Invoke();
             }
+            if (!firstSet) {
+                hasBeenSetOnce = true;
+            }
+            firstSet = false;
         }
     }
 
