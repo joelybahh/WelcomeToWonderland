@@ -3,7 +3,7 @@ guid: f74d2109ef5e98a4cb9d0192cdc05d4f
 timeCreated: 1501808549
 licenseType: Pro
 ModelImporter:
-  serializedVersion: 19
+  serializedVersion: 21
   fileIDToRecycleName:
     100000: //RootNode
     100002: index_1_jnt
@@ -62,6 +62,7 @@ ModelImporter:
     7400006: Open
     7400008: Fist
     7400010: Point
+    7400012: FistToOpen
     9500000: //RootNode
     13700000: polySurface5
   materials:
@@ -74,6 +75,8 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -84,6 +87,7 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
       name: OpenToFist
@@ -323,7 +327,7 @@ ModelImporter:
       name: Open
       takeName: Take 001
       firstFrame: 1
-      lastFrame: 1
+      lastFrame: 2
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -553,13 +557,94 @@ ModelImporter:
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: FistToOpen
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 98
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: polySurface5
+        weight: 1
+      - path: wrist_jnt
+        weight: 1
+      - path: wrist_jnt/index_1_jnt
+        weight: 1
+      - path: wrist_jnt/index_1_jnt/index_2_jnt
+        weight: 1
+      - path: wrist_jnt/index_1_jnt/index_2_jnt/index_3_jnt
+        weight: 1
+      - path: wrist_jnt/index_1_jnt/index_2_jnt/index_3_jnt/index_end_jnt
+        weight: 1
+      - path: wrist_jnt/pinky_1_jnt
+        weight: 1
+      - path: wrist_jnt/pinky_1_jnt/pinky_2_jnt
+        weight: 1
+      - path: wrist_jnt/pinky_1_jnt/pinky_2_jnt/pinky_3_jnt
+        weight: 1
+      - path: wrist_jnt/pinky_1_jnt/pinky_2_jnt/pinky_3_jnt/pinky_4_jnt
+        weight: 1
+      - path: wrist_jnt/pinky_1_jnt/pinky_2_jnt/pinky_3_jnt/pinky_4_jnt/pinky_end_jnt
+        weight: 1
+      - path: wrist_jnt/ring_1_jnt
+        weight: 1
+      - path: wrist_jnt/ring_1_jnt/ring_2_jnt
+        weight: 1
+      - path: wrist_jnt/ring_1_jnt/ring_2_jnt/ring_3_jnt
+        weight: 1
+      - path: wrist_jnt/ring_1_jnt/ring_2_jnt/ring_3_jnt/ring_4_jnt
+        weight: 1
+      - path: wrist_jnt/ring_1_jnt/ring_2_jnt/ring_3_jnt/ring_4_jnt/ring_end_jnt
+        weight: 1
+      - path: wrist_jnt/rude_1_jnt
+        weight: 1
+      - path: wrist_jnt/rude_1_jnt/rude_2_jnt
+        weight: 1
+      - path: wrist_jnt/rude_1_jnt/rude_2_jnt/rude_3_jnt
+        weight: 1
+      - path: wrist_jnt/rude_1_jnt/rude_2_jnt/rude_3_jnt/rude_end_jnt
+        weight: 1
+      - path: wrist_jnt/thumb_1_jnt
+        weight: 1
+      - path: wrist_jnt/thumb_1_jnt/thumb_2_jnt
+        weight: 1
+      - path: wrist_jnt/thumb_1_jnt/thumb_2_jnt/thumb_3_jnt
+        weight: 1
+      - path: wrist_jnt/thumb_1_jnt/thumb_2_jnt/thumb_3_jnt/thumb_end_jnt
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -575,6 +660,7 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:

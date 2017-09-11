@@ -71,6 +71,20 @@ namespace NewtonVR
             SE_TabletTouch tRef = PhysicalController.AddComponent<SE_TabletTouch>();
             tRef.SetupInputField();
 
+            Light lightCheck = PhysicalController.transform.GetChild(0).GetComponent<Light>();
+            if (lightCheck != null) {
+                Animator anim = PhysicalController.transform.GetChild(1).gameObject.AddComponent<Animator>();
+                anim.avatar = Hand.animAvatar;
+                anim.runtimeAnimatorController = Hand.controller;
+            } else {
+                Animator anim = PhysicalController.transform.GetChild(1).gameObject.AddComponent<Animator>();
+                anim.avatar = Hand.animAvatar;
+                anim.runtimeAnimatorController = Hand.controller;
+            }
+            //  Animator anim = PhysicalController.transform.FindChild("").gameObject.AddComponent<Animator>();
+            //  anim.avatar = Hand.animAvatar;
+            // anim.runtimeAnimatorController = Hand.controller;
+
             Rigidbody = PhysicalController.GetComponent<Rigidbody>();
             Rigidbody.isKinematic = false;
             Rigidbody.maxAngularVelocity = float.MaxValue;
