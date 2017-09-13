@@ -37,7 +37,7 @@ namespace WW.Puzzles.Helper {
             m_spinnerPuzzleRef.Button = a_other.GetComponentInChildren<NewtonVR.NVRButton>();
 
             m_spinnerPuzzleRef.Button.gameObject.GetComponent<Rigidbody>().isKinematic = false;
-
+                
             Rigidbody rbRef = a_other.GetComponent<Rigidbody>();
             rbRef.isKinematic = true;
             rbRef.useGravity = false;

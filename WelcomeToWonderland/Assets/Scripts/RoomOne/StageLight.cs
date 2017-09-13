@@ -45,7 +45,6 @@ namespace WW.Puzzles {
             if ( !m_isOn) m_SetId = --LightPuzzle.m_identifier;
             if (GetPowered) m_light.enabled = a_On;
             else m_light.enabled = false;
-
         }
 
         /// <summary>

@@ -11,4 +11,8 @@ public class RestartScene : MonoBehaviour {
             SceneManager.LoadScene(0);
         }
 	}
+
+    public void ResetScene() {
+        SceneManager.LoadScene(0);
+    }
 }

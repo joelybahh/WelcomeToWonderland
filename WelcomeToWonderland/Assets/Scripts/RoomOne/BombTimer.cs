@@ -4,15 +4,20 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 public class BombTimer : MonoBehaviour {
-    List<UnityEvent> m_timersUIOn;
-    List<UnityEvent> m_timersUIOff;
+    List<UnityEvent> m_timersUIOn = new List<UnityEvent>();
+    List<UnityEvent> m_timersUIOff = new List<UnityEvent>();
 
-    [SerializeField] List<GameObject> UIElements;
+    [SerializeField] List<GameObject> UIElements = new List<GameObject>();
+    [SerializeField] List<Text> UIElementsTimers = new List<Text>();
+
     [Header("Final Countdown")]
     [SerializeField] UnityEvent m_explosions;
     [Header("Debugging Tools")]
-    [SerializeField] float m_timer;
+    [SerializeField] float m_timer = 10.0f;
     [SerializeField] bool m_triggered;
+
+    private static bool hasBeenSetOnce = false;
+    private bool firstSet = true;
 
     private void Start()
     {
@@ -20,14 +25,24 @@ public class BombTimer : MonoBehaviour {
         {
             m_timersUIOn.Add(g.GetComponent<ScreenManipulator>().m_on);
             m_timersUIOff.Add(g.GetComponent<ScreenManipulator>().m_off);
+            UIElementsTimers.Add(g.GetComponentInChildren<Text>());
         }
     }
 
     private void Update()
     {
+        if (hasBeenSetOnce) return;
+
         if (m_triggered)
         {
             m_timer -= Time.deltaTime;
+     
+
+            foreach (Text t in UIElementsTimers)
+            {
+
+                t.text = m_timer.ToString();
+            }
             if(m_timer < 0.0f)
             {
                 m_explosions.Invoke();
@@ -35,7 +50,7 @@ public class BombTimer : MonoBehaviour {
         }
     }
 
-    void SetTriggered(bool aBool)
+    public void SetTriggered(bool aBool)
     {
         m_triggered = aBool;
         if (aBool)
@@ -51,6 +66,10 @@ public class BombTimer : MonoBehaviour {
             {
                 e.Invoke();
             }
+            if (!firstSet) {
+                hasBeenSetOnce = true;
+            }
+            firstSet = false;
         }
     }
 
