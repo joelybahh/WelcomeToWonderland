@@ -28,7 +28,7 @@ namespace WW.Puzzles {
         /// <summary>
         /// Disables all lights
         /// </summary>
-        private void DisableAllLights() {
+        public void DisableAllLights() {
             for (int i = 0; i < m_lights.Length; i++) {
                 m_lights[i].SetLight(false);
             }
@@ -37,7 +37,7 @@ namespace WW.Puzzles {
         /// <summary>
         /// Enables all lights
         /// </summary>
-        private void EnableAllLights() {
+        public void EnableAllLights() {
             for (int i = 0; i < m_lights.Length; i++) {
                 m_lights[i].SetLight(true);
             }
