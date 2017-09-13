@@ -75,11 +75,11 @@ namespace NewtonVR
             if (lightCheck != null) {
                 Animator anim = PhysicalController.transform.GetChild(1).gameObject.AddComponent<Animator>();
                 anim.avatar = Hand.animAvatar;
-                anim.runtimeAnimatorController = Hand.controller;
+                //anim.runtimeAnimatorController = Hand.controller;
             } else {
                 Animator anim = PhysicalController.transform.GetChild(1).gameObject.AddComponent<Animator>();
                 anim.avatar = Hand.animAvatar;
-                anim.runtimeAnimatorController = Hand.controller;
+                //anim.runtimeAnimatorController = Hand.controller;
             }
             //  Animator anim = PhysicalController.transform.FindChild("").gameObject.AddComponent<Animator>();
             //  anim.avatar = Hand.animAvatar;

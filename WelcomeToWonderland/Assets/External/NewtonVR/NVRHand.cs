@@ -29,7 +29,7 @@ namespace NewtonVR
         public NVRPlayer Player;
 
         public Avatar animAvatar;
-        public UnityEditor.Animations.AnimatorController controller;
+        //public UnityEditor.Animations.AnimatorController controller;
 
         public Dictionary<NVRButtons, NVRButtonInputs> Inputs;
 
