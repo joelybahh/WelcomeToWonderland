@@ -48,14 +48,23 @@ namespace WW.Interactables {
             LateStart();
 
             currentRot = transform.rotation.eulerAngles.y;
-
+            UpdateSwitchLimits();
             switch ( m_switchState ) {
                 case eSwitchState.LEFT: CheckForSwitchOff(); break;
                 case eSwitchState.RIGHT: CheckForSwitchOn(); break;
                     
             }
 
-            UpdateSwitchLimits();
+            
+        }
+
+        public void TurnOffFlickSwitch() {
+            //transform.rotation = new Quaternion(transform.rotation.x, -15, transform.rotation.z, 1);
+            //currentRot = 59;
+            //CheckForSwitchOff();
+            //m_switchState = eSwitchState.RIGHT;
+            //m_spring.targetPosition = m_min;
+            //m_RightOFF.Invoke();
         }
 
         private void SetSwitch( int a_on ) {
