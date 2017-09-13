@@ -28,6 +28,9 @@ namespace NewtonVR
         [HideInInspector]
         public NVRPlayer Player;
 
+        public Avatar animAvatar;
+        public UnityEditor.Animations.AnimatorController controller;
+
         public Dictionary<NVRButtons, NVRButtonInputs> Inputs;
 
         [HideInInspector]
