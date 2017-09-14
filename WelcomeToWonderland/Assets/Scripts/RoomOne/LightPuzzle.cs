@@ -10,7 +10,7 @@ namespace WW.Puzzles {
         [Tooltip("The Number the Lights have to be assigned from 0-3. EXAMPLE Light1 = 2, light2 = 4, light3 = 1, light4 = 3. the key would be 2,4,1,3")]
         [SerializeField] private int[] m_PuzzleKey = { 2, 3, 1, 4 };
 
-        public static int m_identifier = 0;
+        public static int m_identifier = 4;
         
         private bool PuzzleCorrect;  
         void Start() {
@@ -28,7 +28,7 @@ namespace WW.Puzzles {
         /// <summary>
         /// Disables all lights
         /// </summary>
-        private void DisableAllLights() {
+        public void DisableAllLights() {
             for (int i = 0; i < m_lights.Length; i++) {
                 m_lights[i].SetLight(false);
             }
@@ -37,7 +37,7 @@ namespace WW.Puzzles {
         /// <summary>
         /// Enables all lights
         /// </summary>
-        private void EnableAllLights() {
+        public void EnableAllLights() {
             for (int i = 0; i < m_lights.Length; i++) {
                 m_lights[i].SetLight(true);
             }

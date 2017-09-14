@@ -65,11 +65,11 @@ namespace WW.Puzzles {
             if ( !m_poweredOn ) return;
             else if ( !m_hasInitialized && m_poweredOn ) InitializeRotations();
 
-            if ( m_poweredOn ) {
-                m_redLight.enabled = true;
-                m_greenLight.enabled = true;
-                m_blueLight.enabled = true;
-            }
+            //if ( m_poweredOn ) {
+            //    m_redLight.enabled = true;
+            //    m_greenLight.enabled = true;
+            //    m_blueLight.enabled = true;
+            //}
 
             m_spinnerOuterRot = m_outerSpinner.CurrentAngle;
             m_spinnerMiddleRot = m_middleSpinner.CurrentAngle;
@@ -115,6 +115,10 @@ namespace WW.Puzzles {
         }
 
         public void SetVictoryColor() {
+            m_redLight.enabled = true;
+            m_greenLight.enabled = true;
+            m_blueLight.enabled = true;
+
             m_redLight.color = Color.green;
             m_greenLight.color = Color.green;
             m_blueLight.color = Color.green;

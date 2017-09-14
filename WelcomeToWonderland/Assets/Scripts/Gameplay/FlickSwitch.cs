@@ -30,8 +30,10 @@ namespace WW.Interactables {
         public float offsetOff = 93.0f;
         public float currentRot;
 
+        public bool startLeft = false;
         public bool isFlicker = false;
 
+        private bool doOnce = true; //HACK: fix
         public eSwitchState m_switchState = eSwitchState.RIGHT;
 
         void Start() {
@@ -43,15 +45,26 @@ namespace WW.Interactables {
         }
 
         void Update() {
+            LateStart();
+
             currentRot = transform.rotation.eulerAngles.y;
+            UpdateSwitchLimits();
             switch ( m_switchState ) {
                 case eSwitchState.LEFT: CheckForSwitchOff(); break;
                 case eSwitchState.RIGHT: CheckForSwitchOn(); break;
+                    
             }
 
+            
+        }
 
-
-            UpdateSwitchLimits();
+        public void TurnOffFlickSwitch() {
+            //transform.rotation = new Quaternion(transform.rotation.x, -15, transform.rotation.z, 1);
+            //currentRot = 59;
+            //CheckForSwitchOff();
+            //m_switchState = eSwitchState.RIGHT;
+            //m_spring.targetPosition = m_min;
+            //m_RightOFF.Invoke();
         }
 
         private void SetSwitch( int a_on ) {
@@ -81,6 +94,20 @@ namespace WW.Interactables {
             else m_spring.targetPosition = m_max - 1;
 
             m_switchJoint.spring = m_spring;
+        }
+
+        private void LateStart() {
+            if (doOnce) {
+                if (startLeft) {
+                    transform.rotation = new Quaternion(transform.rotation.x, 39, transform.rotation.z, 1);
+                    m_switchState = eSwitchState.LEFT;
+                    m_LeftON.Invoke();
+                    doOnce = false;
+                } else {
+                    m_RightOFF.Invoke();
+                    doOnce = false;
+                }
+            }
         }
     }
 }
