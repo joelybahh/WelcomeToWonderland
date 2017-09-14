@@ -26,7 +26,7 @@ namespace WW.Movement {
             RaycastHit hit;
 
             if (UnityEngine.Physics.Raycast(ray, out hit)) {
-                if (hit.transform.tag != "Player") {
+                if (hit.transform.tag != "Player" && hit.transform.tag != "CigarPoint") {
                     m_controllerInSight = false;
                     m_pointerReference.enabled = false;
                     m_teleporterReference.CanTeleport = false;
