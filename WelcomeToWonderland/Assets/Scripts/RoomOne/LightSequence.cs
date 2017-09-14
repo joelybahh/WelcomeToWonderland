@@ -49,12 +49,17 @@ namespace WW.Puzzles {
 
         public bool PoweredOn {
             get { return m_poweredOn; }
-            set { m_poweredOn = value; }
+            set { m_poweredOn = value;
+                m_currentLightIndex = 0; }
         }
         
         public bool HasInteracted {
             get { return m_hasInteracted; }
-            set { m_hasInteracted = value; }
+            set {                
+                if(PoweredOn) {
+                    m_hasInteracted = value;
+                } 
+            }
         }
 
         #endregion
@@ -62,7 +67,7 @@ namespace WW.Puzzles {
         #region Unity Methods
 
         void Start() {
-            m_sequenceState = eSequenceState.FLASHING;
+            m_sequenceState = eSequenceState.DELAY;
             m_lightPuzzle = GetComponent<LightPuzzle>();
         }
 
@@ -75,10 +80,7 @@ namespace WW.Puzzles {
                     }
                 }
 
-                if (HasInteracted) {
-                    // Keep true unless they don't interact for 'X' amount of seconds
-                    WaitForInteraction(m_interactionDelayTime);
-                }
+                if (HasInteracted) WaitForInteraction(m_interactionDelayTime);               
             }
         }
 
@@ -148,15 +150,13 @@ namespace WW.Puzzles {
         private void WaitForInteraction(float a_timeToWait) {
             m_interactionTimer += Time.deltaTime;
             if(m_interactionTimer >= a_timeToWait) {
+                m_currentLightIndex = 0;
                 HasInteracted = false;
-                //m_lightPuzzle.DisableAllLights();
                 m_inUse = false;
                 SetState(eSequenceState.FLASHING);
-               
+                
                 foreach (FlickSwitch fS in m_lightSwitches) fS.TurnOffFlickSwitch();
                 foreach (Light l in m_lights) l.enabled = false;
-
-                Debug.Log("Took to long to interact, ressetting");
             }
         }
         #endregion
