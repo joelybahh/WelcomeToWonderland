@@ -13,17 +13,23 @@ namespace WW.Puzzles {
         #region Serialized Variables
 
         [Header("Light References")]
-        [SerializeField] private List<Light> m_lights;
+        [SerializeField]
+        private List<Light> m_lights;
 
         [Header("Flicker Switch References")]
-        [SerializeField] private List<FlickSwitch> m_lightSwitches;
+        [SerializeField]
+        private List<FlickSwitch> m_lightSwitches;
 
 
         [Header("Delay Settings")]
-        [SerializeField] private float m_sequenceDelayTime;
-        [SerializeField] private float m_eachLightDelay;
-        [SerializeField] private float m_lightOnTime;
-        [SerializeField] private float m_interactionDelayTime;
+        [SerializeField]
+        private float m_sequenceDelayTime;
+        [SerializeField]
+        private float m_eachLightDelay;
+        [SerializeField]
+        private float m_lightOnTime;
+        [SerializeField]
+        private float m_interactionDelayTime;
 
         #endregion
 
@@ -49,16 +55,18 @@ namespace WW.Puzzles {
 
         public bool PoweredOn {
             get { return m_poweredOn; }
-            set { m_poweredOn = value;
-                m_currentLightIndex = 0; }
+            set {
+                m_poweredOn = value;
+                m_currentLightIndex = 0;
+            }
         }
-        
+
         public bool HasInteracted {
             get { return m_hasInteracted; }
-            set {                
-                if(PoweredOn) {
+            set {
+                if (PoweredOn) {
                     m_hasInteracted = value;
-                } 
+                }
             }
         }
 
@@ -75,12 +83,14 @@ namespace WW.Puzzles {
             if (m_poweredOn) {
                 if (!m_inUse) {
                     switch (m_sequenceState) {
-                        case eSequenceState.FLASHING: FlashInSequence();                                  break;
-                        case eSequenceState.DELAY:    StartCoroutine(WaitDelayTime(m_sequenceDelayTime)); break;
+                        case eSequenceState.FLASHING: FlashInSequence(); break;
+                        case eSequenceState.DELAY: StartCoroutine(WaitDelayTime(m_sequenceDelayTime)); break;
+                        case eSequenceState.RESET: ResetLights(); break;
+
                     }
                 }
 
-                if (HasInteracted) WaitForInteraction(m_interactionDelayTime);               
+                if (HasInteracted) WaitForInteraction(m_interactionDelayTime);
             }
         }
 
@@ -114,7 +124,7 @@ namespace WW.Puzzles {
         /// <summary>
         /// Flash lights in sequence
         /// </summary>
-        private void FlashInSequence() {           
+        private void FlashInSequence() {
             if (m_lightOnTimer <= 0) m_individualLightDelayTimer += Time.deltaTime;
 
             if (m_currentLightIndex > 3) {
@@ -122,7 +132,7 @@ namespace WW.Puzzles {
                 m_currentLightIndex = 0;
             }
 
-            if (m_individualLightDelayTimer >= m_eachLightDelay) {              
+            if (m_individualLightDelayTimer >= m_eachLightDelay) {
                 m_lights[m_currentLightIndex].enabled = true;           // Flash Current light On
                 m_lightOnTimer += Time.deltaTime;                       // Increase lights on timer
                 if (m_lightOnTimer >= m_lightOnTime) {
@@ -131,7 +141,7 @@ namespace WW.Puzzles {
                     m_lightOnTimer = 0.0f;                              // Reset Timer
                     m_individualLightDelayTimer = 0.0f;                 // Reset Timer
                 }
-            }        
+            }
         }
 
         /// <summary>
@@ -149,18 +159,25 @@ namespace WW.Puzzles {
         /// <param name="a_timeToWait">The desired time to wait before resetting</param>
         private void WaitForInteraction(float a_timeToWait) {
             m_interactionTimer += Time.deltaTime;
-            if(m_interactionTimer >= a_timeToWait) {
+            if (m_interactionTimer >= a_timeToWait) {
                 m_currentLightIndex = 0;
                 HasInteracted = false;
                 m_inUse = false;
                 SetState(eSequenceState.FLASHING);
-                
+
                 foreach (FlickSwitch fS in m_lightSwitches) fS.TurnOffFlickSwitch();
                 foreach (Light l in m_lights) l.enabled = false;
             }
         }
         #endregion
+
+        void ResetLights() {
+            foreach (var light in m_lightPuzzle.Lights) {
+                light.SetLight(false);
+            }
+        }
     }
+
 
     #region Enumerators
     /// <summary>
@@ -168,7 +185,8 @@ namespace WW.Puzzles {
     /// </summary>
     public enum eSequenceState {
         FLASHING,
-        DELAY
+        DELAY,
+        RESET
     }
     #endregion
 }
