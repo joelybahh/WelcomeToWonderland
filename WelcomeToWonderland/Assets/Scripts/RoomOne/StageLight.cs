@@ -9,8 +9,7 @@ namespace WW.Puzzles {
         [SerializeField]
         bool m_isPowered;
         bool m_isOn;
-        [SerializeField]
-        public int m_SetId = 0;
+        public int m_SetId;
         public Light Light
         {
             get { return m_light; }
@@ -29,6 +28,7 @@ namespace WW.Puzzles {
                 if ( !m_isPowered ) { m_light.enabled = false; }
             }
         }
+        public bool triggered = false;
 
         private void Awake() {
             m_isPowered = false;
@@ -39,12 +39,26 @@ namespace WW.Puzzles {
         /// Sets the light to either on or off
         /// </summary>
         /// <param name="a_On">Light on or Light off</param>
-        public void SetLight( bool a_On ) {
-            m_isOn = a_On;
-            if (m_isOn) m_SetId = ++LightPuzzle.m_identifier; 
-            if ( !m_isOn) m_SetId = --LightPuzzle.m_identifier;
-            if (GetPowered) m_light.enabled = a_On;
-            else m_light.enabled = false;
+        public void SetLight(bool a_On) {
+
+            if (GetPowered) {
+                 m_light.enabled = a_On;
+
+            }
+
+            //if (!triggered) {
+            //    Debug.Log(gameObject.name + "Hello i am tgriggered bitches");
+            //    m_isOn = a_On;
+            //    if (m_isOn) m_SetId = ++LightPuzzle.m_identifier;
+            //    if (!m_isOn) m_SetId = --LightPuzzle.m_identifier;
+            //    if (GetPowered) m_light.enabled = a_On;
+            //    else m_light.enabled = false;
+            //    triggered = true;
+            //}
+            //if (triggered) {
+            //    Debug.Log("i am triggered bitches amnd will not work");
+            //}
+            Debug.Log("index is at " + m_SetId + ": " + gameObject.name);
         }
 
         /// <summary>
