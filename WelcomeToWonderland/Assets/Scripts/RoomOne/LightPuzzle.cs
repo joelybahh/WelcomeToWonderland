@@ -5,6 +5,7 @@ using UnityEngine;
 namespace WW.Puzzles {
     public class LightPuzzle : Puzzle {
         [SerializeField] private StageLight[] m_lights;
+        public StageLight[] Lights { get { return m_lights; } }
         [SerializeField] private float m_timer;
         Animator m_ani;
         [Tooltip("The Number the Lights have to be assigned from 0-3. EXAMPLE Light1 = 2, light2 = 4, light3 = 1, light4 = 3. the key would be 2,4,1,3")]
