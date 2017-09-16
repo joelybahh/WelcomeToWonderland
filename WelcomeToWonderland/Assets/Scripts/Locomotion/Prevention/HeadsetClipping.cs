@@ -10,7 +10,8 @@ namespace WW.Movement {
         public SteamVR_LaserPointer m_pointRef;
 
         void OnTriggerStay(Collider a_other) {
-            if (a_other.tag != "MainCamera") {
+            if (a_other.tag != "MainCamera" && a_other.tag != "Player") {
+                //Debug.Log(a_other.name);
                 m_isClipping = true;
                 m_teleRef.CanTeleport = false;
                 m_pointRef.enabled = false;
