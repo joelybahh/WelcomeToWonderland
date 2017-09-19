@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace WW.Puzzles {
     /// <summary>
-    /// Desc:
+    /// Desc: DEPRECATED
     /// Author: Joel Gabriel
     /// </summary>
     public class StageLightController : MonoBehaviour {
@@ -28,6 +29,7 @@ namespace WW.Puzzles {
         private float m_redTimer = 0.0f;
 
         private bool m_poweredOn = false;
+        [Obsolete("The Method is obsolete, now utilising stage light script")]
         public bool PoweredOn {
             get { return m_poweredOn; }
             set { m_poweredOn = value; }
@@ -41,7 +43,7 @@ namespace WW.Puzzles {
         }
         
         void Update() {
-            if (!m_poweredOn) return;
+            if (!PoweredOn) return;
 
             m_noIntTimer += Time.deltaTime;
             if(m_noIntTimer >= m_maxNoInteractionTime) {
@@ -66,10 +68,12 @@ namespace WW.Puzzles {
             }
         }
 
+        [Obsolete("The Method is obsolete, now utilising stage light script")]
         private bool Completed() {            
             return false;
         }
 
+        [Obsolete("The Method is obsolete, now utilising stage light script")]
         public void AddToCombinationList(int a_index) {
 
             // SAFEGUARD ---------------------------------------

@@ -172,13 +172,13 @@ namespace WW.Puzzles {
                 foreach (Light l in m_lights) l.enabled = false;
             }
         }
-        #endregion
 
         void ResetLights() {
             foreach (var light in m_lightPuzzle.Lights) {
                 light.SetLight(false);
             }
         }
+        #endregion
     }
 
 
