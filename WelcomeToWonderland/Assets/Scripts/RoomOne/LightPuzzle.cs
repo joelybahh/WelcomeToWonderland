@@ -117,7 +117,6 @@ namespace WW.Puzzles {
             {
                 m_lights[i].Light.color = Color.blue;
             }
-            m_ani.SetTrigger("PuzzleCompleted");
         }
 
        public void AddToList(StageLight aLight) {
