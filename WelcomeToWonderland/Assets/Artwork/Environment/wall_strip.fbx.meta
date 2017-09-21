@@ -1,29 +1,17 @@
 fileFormatVersion: 2
-guid: 653906f5f62684145a88425c2ab61e1e
-timeCreated: 1505956663
+guid: 9a89917791ad30f4fa925f300e06c5ba
+timeCreated: 1505955135
 licenseType: Pro
 ModelImporter:
   serializedVersion: 21
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: stage_geo 1
-    100004: step_bot
-    100006: step_top
-    100008: transform7
-    400000: //RootNode
-    400002: stage_geo 1
-    400004: step_bot
-    400006: step_top
-    400008: transform7
-    2300000: stage_geo 1
-    2300002: step_bot
-    2300004: step_top
-    3300000: stage_geo 1
-    3300002: step_bot
-    3300004: step_top
-    4300000: stage_geo
-    4300002: step_bot
-    4300004: step_top
+    100000: polySurface2
+    100002: //RootNode
+    400000: polySurface2
+    400002: //RootNode
+    2300000: polySurface2
+    3300000: polySurface2
+    4300000: polySurface2
   materials:
     importMaterials: 1
     materialName: 0
