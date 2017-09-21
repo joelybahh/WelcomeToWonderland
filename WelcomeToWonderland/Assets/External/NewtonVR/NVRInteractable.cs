@@ -14,6 +14,10 @@ namespace NewtonVR
         
         public bool DisableKinematicOnAttach = true;
         public bool EnableKinematicOnDetach = false;
+
+        public bool DisableSpringOnAttach = false;
+        public bool EnableSpringOnDetach = false;
+
         public float DropDistance = 1;
 
         public bool EnableGravityOnDetach = true;
@@ -32,8 +36,8 @@ namespace NewtonVR
 
         protected Collider[] Colliders = new Collider[0];
         protected Vector3 ClosestHeldPoint;
+        protected HingeJoint m_hingeJoint;
 
-        
 
         public virtual bool IsAttached
         {
@@ -58,7 +62,7 @@ namespace NewtonVR
         protected virtual void Start()
         {
             UpdateColliders();
-        }
+    }
 
         public virtual void ResetInteractable()
         {
@@ -119,6 +123,11 @@ namespace NewtonVR
             {
                 Rigidbody.isKinematic = false;
             }
+
+            if (DisableSpringOnAttach == true)
+            {
+                if(m_hingeJoint != null) m_hingeJoint.useSpring = false;
+            }
         }
 
         public virtual void InteractingUpdate(NVRHand hand)
@@ -170,7 +179,11 @@ namespace NewtonVR
             {
                 Rigidbody.useGravity = true;
             }
-        }
+
+            if(EnableSpringOnDetach == true) {
+                if (m_hingeJoint != null) m_hingeJoint.useSpring = true;
+            }
+         }
 
         protected virtual void DroppedBecauseOfDistance(NVRHand hand)
         {

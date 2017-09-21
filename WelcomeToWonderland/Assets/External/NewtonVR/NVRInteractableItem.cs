@@ -24,6 +24,8 @@ namespace NewtonVR
         public UnityEvent OnBeginInteraction;
         public UnityEvent OnEndInteraction;
 
+
+        
         protected Dictionary<NVRHand, Transform> PickupTransforms = new Dictionary<NVRHand, Transform>();
 
         protected Vector3 ExternalVelocity;
@@ -43,6 +45,7 @@ namespace NewtonVR
             base.Awake();
 
             this.Rigidbody.maxAngularVelocity = 100f;
+
         }
 
         protected override void Start()
@@ -54,6 +57,8 @@ namespace NewtonVR
                 VelocityHistory = new Vector3?[NVRPlayer.Instance.VelocityHistorySteps];
                 AngularVelocityHistory = new Vector3?[NVRPlayer.Instance.VelocityHistorySteps];
             }
+
+            m_hingeJoint = GetComponent<HingeJoint>();
         }
 
         protected virtual void FixedUpdate()
