@@ -23,8 +23,8 @@ namespace WW.Puzzles.Helper {
                 }
             }
             else if ( a_other.tag != "CameraButton" ) {
-
-                //Needs to be corrected to the correct voice line index/string
+                //Needs to be corrected to the correct voice line index/string and a range put in for multiple voicelines
+                //int i = Random.Range(e, z);
                 WW.Managers.AudioManager.Instance.PlayVoiceLine(0);
                 
 
