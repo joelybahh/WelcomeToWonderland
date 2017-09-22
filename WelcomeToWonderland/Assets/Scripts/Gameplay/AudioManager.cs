@@ -36,7 +36,7 @@ namespace WW.Managers {
         /// Plays an audio file based on its index in the list of voiceLines
         /// </summary>
         /// <param name="a_voiceLineIndex">The index at which you want to grab the voice line to play</param>
-        public void PlayVoiceLine( uint a_voiceLineIndex ) {
+        public void PlayVoiceLine( int a_voiceLineIndex ) {
             if ( a_voiceLineIndex > m_voiceLines.Count - 1 ) {
                 Debug.LogError("Error Detected! -- Attempting to play an audio clip at an index that exceeds the array length! Exiting function to avoid issues!");
                 return;
