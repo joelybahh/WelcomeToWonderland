@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using WW.Managers;
 
 namespace WW.Puzzles {
     public class LightPuzzle : Puzzle {
@@ -34,14 +35,16 @@ namespace WW.Puzzles {
                 m_buttonIds = new List<int>();
                 
                 StartCoroutine(IncorrectSequence(1.0f));
+                AudioManager.Instance.PlayVoiceLine(8);
 
             } else if (m_buttonIds.Count > 4) {
                 m_buttonIds = new List<int>();
 
                 StartCoroutine(IncorrectSequence(1.0f));
+                AudioManager.Instance.PlayVoiceLine(8);
 
             }
-            if (PuzzleCorrect) CompletePuzzle();
+            if ( PuzzleCorrect ) CompletePuzzle();
 
         }
 
@@ -117,7 +120,8 @@ namespace WW.Puzzles {
             {
                 m_lights[i].Light.color = Color.blue;
             }
-            m_ani.SetTrigger("PuzzleCompleted");
+
+            AudioManager.Instance.PlayVoiceLine(9);
         }
 
        public void AddToList(StageLight aLight) {
