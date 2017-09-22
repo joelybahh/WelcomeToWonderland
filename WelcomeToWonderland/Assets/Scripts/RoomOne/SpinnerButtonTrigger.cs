@@ -17,10 +17,17 @@ namespace WW.Puzzles.Helper {
         void OnTriggerStay(Collider a_other) {
             if ( m_spinnerPuzzleRef.Button != null ) return; // if the spinner already has a button attatched, exit out of the loop.
 
-            if ( a_other.tag == "CameraButton") {               
-                if (a_other.GetComponent<NewtonVR.NVRInteractableItem>().AttachedHands.Count == 0) {
+            if ( a_other.tag == "CameraButton" ) {
+                if ( a_other.GetComponent<NewtonVR.NVRInteractableItem>().AttachedHands.Count == 0 ) {
                     StartCoroutine(SetKinematicAfterTime(1.0f, a_other));
-                }                
+                }
+            }
+            else if ( a_other.tag != "CameraButton" ) {
+
+                //Needs to be corrected to the correct voice line index/string
+                WW.Managers.AudioManager.Instance.PlayVoiceLine(0);
+                
+
             }
         }
 
